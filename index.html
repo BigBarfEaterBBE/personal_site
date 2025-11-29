@@ -14,6 +14,23 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body class = "min-h-screen">
+        <!--fixed navigation bar :)-->
+        <nav class="stick top-0 z-30 w-full bg-[#1a1a2e] bg-opacity-95 backdrop-blur-sm shadow-md">
+            <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+                <a href="#landing-hero" class="text-xl font-bold text-pink-400 transition">Ada's Portfolio</a>
+            </div>
+        </nav>
+        <div id="landing-hero">
+            <div class="image-grid">
+                <img src="https://placehold.co/400x300/e94560/ffffff?text=Coding" alt="Favorite Thing: Coding">
+                <img src="https://placehold.co/400x300/3c3c6f/ffffff?text=Cars" alt="Favorite Thing: Cars">
+                <img src="https://placehold.co/400x300/1a1a2e/ffffff?text=Music" alt="Favorite Thing: Music">
+                <img src="https://placehold.co/400x300/3c3c6f/ffffff?text=Games" alt="Favorite Thing: Games">
+                <img src="https://placehold.co/400x300/1a1a2e/ffffff?text=Hiking" alt="Favorite Thing: Hiking">
+                <img src="https://placehold.co/400x300/e94560/ffffff?text=Travel" alt="Favorite Thing: Travel">
+            </div>
+            <h1 id="hero-text" class="ext-center">Ada's Portfolio</h1>
+        </div>
         <header class = "py-16 bg-gray-900 shadow-xl border-b-4 border-pink-600">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <img class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-pink-500"
@@ -22,44 +39,84 @@
                 <h1 class="text-4xl sm: text-5xl font-extrabold mb-2 text-pink-400">
                     Hi, I'm Ada!
                 </h1>
-                <p class="text-x1 text-gray-300 max-w-2xl max-auto">
+                <p class="text-x1"text-gray-400 max-w-2xl max-auto">
                     Welcome to my personal site. I'm passionate about coding, cars, music, food, and animals! This site is to showcase my projects and favorite things.
                 </p>
             </div>
         </header>
+        <!--
         <main class="max-w-5xl mx-auto px-4 py-12">
-            <!-- Section1 core interests-->
              <section class="mb-16">
                 <h2 class="text-3xl font-bold section-heading text-pink-300">
                     My interests
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="card p-6 rounded-xl shadow-lg">
-                        <i data-lucide="code" class="w-8 h-8 mr-3"></i>
-                        <h3 class="text-xl font-semibold">Coding</h3>
+                        <div class="flex items-center mb-3 text-pink-500">
+                            <i data-lucide="code" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-semibold">Coding</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            I love creating fun games and useful applications using various programs and coding languages such as Python, GDScript, or Javascript.
+                        </p>
                     </div>
-                    <p class="text-gray-400">
-                        I love creating fun games and useful applications using various programs and coding languages such as Python, GDScript, or Javascript.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="card p-6 rounded-xl shadow-lg">
-                        <i data-lucide="car-front" class="w-8 h-8 mr-3"></i>
-                        <h3 class="text-xl font-semibold">Cars</h3>
+                        <div class="flex items-center mb-3 text-pink-500">
+                            <i data-lucide="car-front" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-semibold">Cars</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            Working on cars with my dad is one of my favorite hobbies. One day I hope I can get my own car and mod it.
+                        </p>
                     </div>
-                    <p class="text-gray-400">
-                        Working on cars with my dad is one of my favorite hobbies. One day I hope I can get my own car and mod it.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="card p-6 rounded-xl shadow-lg">
-                        <i data-lucide="headphones" class="w-8 h-8 mr-3"></i>
-                        <h3 class="text-xl font-semibold">Music</h3>
+                        <div class="flex items-center mb-3 text-pink-500">
+                            <i data-lucide="headphones" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-semibold">Music</h3>
+                        </div>
+                        <p class="text-gray-400">
+                            Music is a big part of my life. I enjoy listening and playing music. I play the clarinet, oboe, and piano.
+                        </p>
                     </div>
-                    <p class="text-gray-400">
-                        Listening to music really helps me focus when working or relax after a long day. My favorite artists are Zerobasone, Keshi, and Jackson Wang.
                 </div>
+                    
              </section>
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold section-heading text-pink-300">
+                    Photos!
+                </h2>
+                <p class="text-gray-400 mb-6">A small photo gallery of images related to my interests</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="#" class="block hover:opacity-80 transition duration-300 rounded-lg overflow-hidden">
+                        <img class="w-full h-32 object-cover rounded-lg transform hover:scale-105 transition-transform duration-500"
+                            src="https://placehold.co/400x300/e94560/ffffff?text=Photo+1"
+                            alt="Placeholder image 1">
+                    </a>
+                </div>
+            </section>
+            <section>
+                <h2 class="text-3xl font-bold section-heading ext-pink-300">
+                    Contact Me
+                </h2>
+                <div class="card p-8 rounded-xl shadow-lg space-y-4">
+                    <div class="flex space-x-6">
+                        <a href="mailto:adajiang2020@gmail.com" class="text-gray-400 hover:text-pink-400 flex items-center transition duration-200">
+                            <i data-lucide="mail" class="w-6 h-6 mr-2"></i> Email Me
+                        </a>
+                        <a href="https://github.com/BigBarfEaterBBE" class="text-gray-400 hover:text-pink-400 flex items-center transition duration-200">
+                            <i data-lucide="github" class="w-6 h-6 mr-2"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+        
         </main>
+    -->
+        <footer class="mt-12 py-6 bg-gray-900 text-center text-gray-500 border-t border-gray-700">
+            <p>Built with <span class="text-pink-500">&hearts;</span> | Hosted for free</p>
+        </footer>
+        <script>
+            lucide.createIcons();
+        </script>
     </body>
 </html>

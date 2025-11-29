@@ -20,3 +20,19 @@ body {
     box-shadow: 0 10px 20px rgb(247, 201, 212);
     
 }
+
+#landing-hero {
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #1a1a2e;
+    z-index: 10;
+}
+
+#hero-text {
+    font-size: 4rem;
+    
+}
