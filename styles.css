@@ -1,0 +1,22 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #C8D9E6;
+    color: #2f4156
+}
+
+.section-heading {
+    border-bottom: 2px solid #f5efeb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background-color: #ffe1e6;
+    transition: transform 0.3s, box-shadow 0.3;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgb(247, 201, 212);
+    
+}

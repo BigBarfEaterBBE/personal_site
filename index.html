@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html len="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personal Site</title>
+        <!-- load tailwind-->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- load lucide icons-->
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <!-- load inter font-->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <!-- style sheet-->
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body class = "min-h-screen">
+        <header class = "py-16 bg-gray-900 shadow-xl border-b-4 border-pink-600">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <img class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-pink-500"
+                    src = "1feea87c24e80885dc27557ded51160e.jpg"
+                    alt="Profile Picture">
+                <h1 class="text-4xl sm: text-5xl font-extrabold mb-2 text-pink-400">
+                    Hi, I'm Ada!
+                </h1>
+                <p class="text-x1 text-gray-300 max-w-2xl max-auto">
+                    Welcome to my personal site. I'm passionate about coding, cars, music, food, and animals! This site is to showcase my projects and favorite things.
+                </p>
+            </div>
+        </header>
+        <main class="max-w-5xl mx-auto px-4 py-12">
+            <!-- Section1 core interests-->
+             <section class="mb-16">
+                <h2 class="text-3xl font-bold section-heading text-pink-300">
+                    My interests
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6 rounded-xl shadow-lg">
+                        <i data-lucide="code" class="w-8 h-8 mr-3"></i>
+                        <h3 class="text-xl font-semibold">Coding</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        I love creating fun games and useful applications using various programs and coding languages such as Python, GDScript, or Javascript.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6 rounded-xl shadow-lg">
+                        <i data-lucide="car-front" class="w-8 h-8 mr-3"></i>
+                        <h3 class="text-xl font-semibold">Cars</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Working on cars with my dad is one of my favorite hobbies. One day I hope I can get my own car and mod it.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6 rounded-xl shadow-lg">
+                        <i data-lucide="headphones" class="w-8 h-8 mr-3"></i>
+                        <h3 class="text-xl font-semibold">Music</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Listening to music really helps me focus when working or relax after a long day. My favorite artists are Zerobasone, Keshi, and Jackson Wang.
+                </div>
+             </section>
+        </main>
+    </body>
+</html>
