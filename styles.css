@@ -22,11 +22,10 @@ body {
 }
 
 #landing-hero {
-    height: 100vh;
+    height: 84vh;
     display:flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     position: relative;
     background-color: #1a1a2e;
     z-index: 10;
@@ -52,8 +51,8 @@ body {
 
 .image-grid img {
     position: absolute;
-    width: 40%;
-    height: 60%;
+    width: 20%;
+    height: 20%;
     object-fit: cover;
     z-index: 15;
     top: 50%;
@@ -80,37 +79,37 @@ body {
 }
 
 @keyframes spread1 {
-    /* Image 1: Top-Left */
+    /* Image 1: Top-Left -> Closer to center (X-75% from -100%) and safer Y (Y-50% from -80%) */
     0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
-    100% { transform: translate(-100%, -100%) scale(0.8) rotate(-20deg); opacity: 0.2; }
+    100% { top: 16%; left: 25%; transform: scale(0.8) rotate(-20deg); opacity: 0.6; }
 }
 
 @keyframes spread2 {
-    /* Image 2: Top-Right */
+    /* Image 2: Top-Right -> Closer to center (X-25% from 0%) and safer Y (Y-50% from -80%) */
     0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
-    100% { transform: translate(0%, -100%) scale(0.9) rotate(10deg); opacity: 0.2; }
+    100% { top: 20%; left: 59%; transform: scale(0.9) rotate(10deg); opacity: 0.6; }
 }
 
 @keyframes spread3 {
-    /* Image 3: Far Right */
+    /* Image 3: Far Right -> Safer X (X+100% from +120%) */
     0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
-    100% { transform: translate(20%, -20%) scale(0.7) rotate(5deg); opacity: 0.2; }
+    100% { top: 46%; left: 73%; transform: scale(0.7) rotate(5deg); opacity: 0.6; }
 }
 
 @keyframes spread4 {
-    /* Image 4: Bottom-Right */
+    /* Image 4: Bottom-Right -> Safer Y (Y+40% from +50%) */
     0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
-    100% { transform: translate(0%, 50%) scale(1.0) rotate(-10deg); opacity: 0.2; }
+    100% { top:60%; left: 53%; transform: scale(1.0) rotate(-10deg); opacity: 0.6; }
 }
 
 @keyframes spread5 {
-    /* Image 5: Bottom-Left */
+    /* Image 5: Bottom-Left -> Safer Y (Y+40% from +50%) */
     0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
-    100% { transform: translate(-100%, 50%) scale(0.95) rotate(15deg); opacity: 0.2; }
+    100% { top: 70%; left: 18%; transform: scale(0.95) rotate(15deg); opacity: 0.6; }
 }
 
 @keyframes spread6 {
-    /* Image 6: Far Left */
+    /* Image 6: Far Left -> Safer X (X-100% from -120%) */
     0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
-    100% { transform: translate(-120%, -20%) scale(0.85) rotate(-5deg); opacity: 0.2; }
+    100% { top: 48%; left: 8%; transform: scale(0.85) rotate(-5deg); opacity: 0.6; }
 }
