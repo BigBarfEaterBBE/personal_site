@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html len="en">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,114 +10,319 @@
         <script src="https://unpkg.com/lucide@latest"></script>
         <!-- load inter font-->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-        <!-- style sheet-->
-        <link rel="stylesheet" href="styles.css">
+        
+        <!-- Style Sheet (Consolidated CSS) -->
+        <style>
+            html, body {
+                /* Use min-h-screen on body and let the content manage scroll */
+                overflow-x: hidden; 
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #C8D9E6;
+                color: #2f4156;
+                min-height: 200vh; /* Ensure enough scroll space */
+            }
+
+            .section-heading {
+                border-bottom: 2px solid #f5efeb;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .card {
+                background-color: #ffe1e6;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(247, 201, 212, 0.7);
+            }
+
+            /* *** FIX 1: The scroll-spacer needs height to push the main content down *** */
+            #scroll-spacer {
+                height: 100vh; /* Must match the height of the fixed hero to allow scrolling */
+            }
+
+            #landing-hero {
+                min-height: 100vh;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: fixed; /* Keeps it on top */
+                background-color: #1a1a2e;
+                z-index: 10;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+                transition: opacity 0.3s; /* Smooth fade effect */
+            }
+
+            #hero-text {
+                font-size: 2.5rem; /* Increased size */
+                font-weight: 800;
+                color: #f7f7f7;
+                position: relative;
+                z-index: 20;
+                text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                opacity: 1; /* Initial opacity is 1, JS will fade it */
+                transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+                
+            }
+
+            .image-grid {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: visible;
+            }
+
+            .image-grid img {
+                position: absolute;
+                width: 12vw;
+                height: auto;
+                object-fit: contain;
+                aspect-ratio: 1/1;
+                z-index: 15;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.1);
+                animation-fill-mode: forwards;
+                animation-play-state: paused;
+            }
+
+            /* Remove red outline for production */
+            /* * { outline: 1px solid red !important; } */
+
+            @keyframes spread1 { 0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.1); opacity: 0; } 100% { top: 16%; left: 25%; transform: scale(0.8) rotate(-20deg); opacity: 0.6; } }
+            @keyframes spread2 { 0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.1); opacity: 0; } 100% { top: 20%; left: 59%; transform: scale(0.9) rotate(10deg); opacity: 0.6; } }
+            @keyframes spread3 { 0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.1); opacity: 0; } 100% { top: 46%; left: 73%; transform: scale(0.7) rotate(5deg); opacity: 0.6; } }
+            @keyframes spread4 { 0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.1); opacity: 0;} 100% { top:60%; left: 53%; transform: scale(1.0) rotate(-10deg); opacity: 0.6; } }
+            @keyframes spread5 { 0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.1); opacity: 0;} 100% { top: 65%; left: 18%; transform: scale(0.95) rotate(15deg); opacity: 0.6; } }
+            @keyframes spread6 { 0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.1); opacity: 0;} 100% { top: 38%; left: 8%; transform: scale(0.85) rotate(-5deg); opacity: 0.6; } } 
+
+            .image-grid.animate-spread img {
+                animation-play-state: running;
+            }
+
+            .image-grid.animate-spread img:nth-child(1) { animation: spread1 2s ease-out 0.8s forwards; }
+            .image-grid.animate-spread img:nth-child(2) { animation: spread2 2.2s ease-out 1.0s forwards; }
+            .image-grid.animate-spread img:nth-child(3) { animation: spread3 1.9s ease-out 0.7s forwards; }
+            .image-grid.animate-spread img:nth-child(4) { animation: spread4 2.1s ease-out 0.95s forwards; }
+            .image-grid.animate-spread img:nth-child(5) { animation: spread5 2.3s ease-out 1.1s forwards; }
+            .image-grid.animate-spread img:nth-child(6) { animation: spread6 1.7s ease-out 0.75s forwards; } 
+        </style>
     </head>
-    <body class = "min-h-screen">
-        <!--fixed navigation bar :)-->
-        <nav class="stick top-0 z-30 w-full bg-[#1a1a2e] bg-opacity-95 backdrop-blur-sm shadow-md">
+    <body class="min-h-screen">
+        
+        <!-- Fixed navigation bar -->
+        <!-- FIX: Changed 'stick' to 'fixed' for correct Tailwind behavior -->
+        <nav class="fixed top-0 z-30 w-full bg-[#1a1a2e] bg-opacity-95 backdrop-blur-sm shadow-md">
             <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
                 <a href="#landing-hero" class="text-xl font-bold text-pink-400 transition">Ada's Portfolio</a>
             </div>
         </nav>
+        
+        <!-- FIX 1: This spacer now has 100vh height via CSS to push main-content down -->
+        <div id="scroll-spacer"></div>
+
+        <!-- The FIXED hero section that covers the view initially -->
         <div id="landing-hero">
-            <div class="image-grid">
-                <img src="clover_icon.png" alt="Outdoors">
-                <img src="computer_icon.png" alt="Coding">
-                <img src="f1car_icon.png" alt="Cars">
-                <img src="headphones_icon.png" alt="Music">
-                <img src="notebook_icon.png" alt="Debate">
-                <img src="orca_icon.png" alt="Animals">
+            <div class="image-grid" id="image-grid">
+                <!-- NOTE: Image URLs are mock/placeholder and may not exist -->
+                <img src="https://placehold.co/100x100/314e82/ffffff?text=Clover" alt="Outdoors" onerror="this.src='https://placehold.co/100x100/314e82/ffffff?text=Clover'">
+                <img src="https://placehold.co/100x100/314e82/ffffff?text=Code" alt="Coding" onerror="this.src='https://placehold.co/100x100/314e82/ffffff?text=Code'">
+                <img src="https://placehold.co/100x100/314e82/ffffff?text=F1" alt="Cars" onerror="this.src='https://placehold.co/100x100/314e82/ffffff?text=F1'">
+                <img src="https://placehold.co/100x100/314e82/ffffff?text=Music" alt="Music" onerror="this.src='https://placehold.co/100x100/314e82/ffffff?text=Music'">
+                <img src="https://placehold.co/100x100/314e82/ffffff?text=Debate" alt="Debate" onerror="this.src='https://placehold.co/100x100/314e82/ffffff?text=Debate'">
+                <img src="https://placehold.co/100x100/314e82/ffffff?text=Orca" alt="Animals" onerror="this.src='https://placehold.co/100x100/314e82/ffffff?text=Orca'">
             </div>
-            <h1 id="hero-text" class="ext-center">Ada's Portfolio</h1>
+            <!-- FIX: 'ext-center' corrected to 'text-center' -->
+            <h1 id="hero-text" class="text-center text-6xl md:text-8xl">Ada's Portfolio</h1>
         </div>
-        <!--
-        <header class = "py-16 bg-gray-900 shadow-xl border-b-4 border-pink-600">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <img class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-pink-500"
-                    src = "1feea87c24e80885dc27557ded51160e.jpg"
-                    alt="Profile Picture">
-                <h1 class="text-4xl sm: text-5xl font-extrabold mb-2 text-pink-400">
-                    Hi, I'm Ada!
-                </h1>
-                <p class="text-x1"text-gray-400 max-w-2xl max-auto">
-                    Welcome to my personal site. I'm passionate about coding, cars, music, food, and animals! This site is to showcase my projects and favorite things.
-                </p>
-            </div>
-        </header>
-        
-        <main class="max-w-5xl mx-auto px-4 py-12">
-             <section class="mb-16">
-                <h2 class="text-3xl font-bold section-heading text-pink-300">
-                    My interests
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card p-6 rounded-xl shadow-lg">
-                        <div class="flex items-center mb-3 text-pink-500">
-                            <i data-lucide="code" class="w-8 h-8 mr-3"></i>
-                            <h3 class="text-xl font-semibold">Coding</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            I love creating fun games and useful applications using various programs and coding languages such as Python, GDScript, or Javascript.
-                        </p>
-                    </div>
-                    <div class="card p-6 rounded-xl shadow-lg">
-                        <div class="flex items-center mb-3 text-pink-500">
-                            <i data-lucide="car-front" class="w-8 h-8 mr-3"></i>
-                            <h3 class="text-xl font-semibold">Cars</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            Working on cars with my dad is one of my favorite hobbies. One day I hope I can get my own car and mod it.
-                        </p>
-                    </div>
-                    <div class="card p-6 rounded-xl shadow-lg">
-                        <div class="flex items-center mb-3 text-pink-500">
-                            <i data-lucide="headphones" class="w-8 h-8 mr-3"></i>
-                            <h3 class="text-xl font-semibold">Music</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            Music is a big part of my life. I enjoy listening and playing music. I play the clarinet, oboe, and piano.
-                        </p>
-                    </div>
+
+        <!-- This is the content that the user scrolls down to see -->
+        <div id="main-content" class="relative z-20"> 
+            <header class="py-16 bg-gray-900 shadow-xl border-b-4 border-pink-600">
+                <div class="max-w-4xl mx-auto px-4 text-center">
+                    <img class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-pink-500"
+                        src="https://placehold.co/112x112/f5efeb/1a1a2e?text=Profile"
+                        onerror="this.onerror=null; this.src='https://placehold.co/112x112/f5efeb/1a1a2e?text=Profile';"
+                        alt="Profile Picture">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold mb-2 text-pink-400">
+                        Hi, I'm Ada!
+                    </h1>
+                    <!-- FIX: Corrected class structure (text-x1 text-gray-400 max-w-2xl max-auto) -->
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Welcome to my personal site. I'm passionate about coding, cars, music, food, and animals! This site is to showcase my projects and favorite things.
+                    </p>
                 </div>
-                    
-             </section>
-            <section class="mb-16">
-                <h2 class="text-3xl font-bold section-heading text-pink-300">
-                    Photos!
-                </h2>
-                <p class="text-gray-400 mb-6">A small photo gallery of images related to my interests</p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <a href="#" class="block hover:opacity-80 transition duration-300 rounded-lg overflow-hidden">
-                        <img class="w-full h-32 object-cover rounded-lg transform hover:scale-105 transition-transform duration-500"
-                            src="https://placehold.co/400x300/e94560/ffffff?text=Photo+1"
-                            alt="Placeholder image 1">
-                    </a>
-                </div>
-            </section>
-            <section>
-                <h2 class="text-3xl font-bold section-heading ext-pink-300">
-                    Contact Me
-                </h2>
-                <div class="card p-8 rounded-xl shadow-lg space-y-4">
-                    <div class="flex space-x-6">
-                        <a href="mailto:adajiang2020@gmail.com" class="text-gray-400 hover:text-pink-400 flex items-center transition duration-200">
-                            <i data-lucide="mail" class="w-6 h-6 mr-2"></i> Email Me
+            </header>
+            
+            <main class="max-w-5xl mx-auto px-4 py-12">
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold section-heading text-pink-300">
+                        My interests
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="card p-6 rounded-xl shadow-lg">
+                            <div class="flex items-center mb-3 text-pink-500">
+                                <i data-lucide="code" class="w-8 h-8 mr-3"></i>
+                                <h3 class="text-xl font-semibold">Coding</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                I love creating fun games and useful applications using various programs and coding languages such as Python, GDScript, or Javascript.
+                            </p>
+                        </div>
+                        <div class="card p-6 rounded-xl shadow-lg">
+                            <div class="flex items-center mb-3 text-pink-500">
+                                <i data-lucide="car-front" class="w-8 h-8 mr-3"></i>
+                                <h3 class="text-xl font-semibold">Cars</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                Working on cars with my dad is one of my favorite hobbies. One day I hope I can get my own car and mod it.
+                            </p>
+                        </div>
+                        <div class="card p-6 rounded-xl shadow-lg">
+                            <div class="flex items-center mb-3 text-pink-500">
+                                <i data-lucide="headphones" class="w-8 h-8 mr-3"></i>
+                                <h3 class="text-xl font-semibold">Music</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                Music is a big part of my life. I enjoy listening and playing music. I play the clarinet, oboe, and piano.
+                            </p>
+                        </div>
+                    </div>
+                        
+                </section>
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold section-heading text-pink-300">
+                        Photos!
+                    </h2>
+                    <p class="text-gray-600 mb-6">A small photo gallery of images related to my interests</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <a href="#" class="block hover:opacity-80 transition duration-300 rounded-lg overflow-hidden">
+                            <img class="w-full h-32 object-cover rounded-lg transform hover:scale-105 transition-transform duration-500"
+                                src="https://placehold.co/400x300/e94560/ffffff?text=Photo+1"
+                                alt="Placeholder image 1">
                         </a>
-                        <a href="https://github.com/BigBarfEaterBBE" class="text-gray-400 hover:text-pink-400 flex items-center transition duration-200">
-                            <i data-lucide="github" class="w-6 h-6 mr-2"></i> GitHub
+                        <a href="#" class="block hover:opacity-80 transition duration-300 rounded-lg overflow-hidden">
+                            <img class="w-full h-32 object-cover rounded-lg transform hover:scale-105 transition-transform duration-500"
+                                src="https://placehold.co/400x300/e94560/ffffff?text=Photo+2"
+                                alt="Placeholder image 2">
+                        </a>
+                        <a href="#" class="block hover:opacity-80 transition duration-300 rounded-lg overflow-hidden">
+                            <img class="w-full h-32 object-cover rounded-lg transform hover:scale-105 transition-transform duration-500"
+                                src="https://placehold.co/400x300/e94560/ffffff?text=Photo+3"
+                                alt="Placeholder image 3">
+                        </a>
+                        <a href="#" class="block hover:opacity-80 transition duration-300 rounded-lg overflow-hidden">
+                            <img class="w-full h-32 object-cover rounded-lg transform hover:scale-105 transition-transform duration-500"
+                                src="https://placehold.co/400x300/e94560/ffffff?text=Photo+4"
+                                alt="Placeholder image 4">
                         </a>
                     </div>
-                </div>
-            </section>
-        
-        </main>
-    -->
+                </section>
+                <section>
+                    <!-- FIX: 'ext-pink-300' corrected to 'text-pink-300' -->
+                    <h2 class="text-3xl font-bold section-heading text-pink-300">
+                        Contact Me
+                    </h2>
+                    <div class="card p-8 rounded-xl shadow-lg space-y-4">
+                        <p class="text-gray-600">I'd love to connect! Feel free to reach out to me through email or check out my GitHub.</p>
+                        <div class="flex space-x-6">
+                            <a href="mailto:adajiang2020@gmail.com" class="text-gray-600 hover:text-pink-600 flex items-center transition duration-200 font-medium">
+                                <i data-lucide="mail" class="w-6 h-6 mr-2"></i> Email Me
+                            </a>
+                            <a href="https://github.com/BigBarfEaterBBE" class="text-gray-600 hover:text-pink-600 flex items-center transition duration-200 font-medium">
+                                <i data-lucide="github" class="w-6 h-6 mr-2"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    
         <footer class="mt-12 py-6 bg-gray-900 text-center text-gray-500 border-t border-gray-700">
             <p>Built with <span class="text-pink-500">&hearts;</span> | Hosted for free</p>
         </footer>
+
         <script>
             lucide.createIcons();
+
+            const heroContainer = document.getElementById('landing-hero');
+            const heroText = document.getElementById('hero-text');
+            const imageGrid = document.getElementById('image-grid'); // Added ID to use in JS
+            const images = document.querySelectorAll('.image-grid img');
+
+            const SCROLL_DURATION_FADE = 400; // How far the user scrolls to fade out the hero
+            const SCROLL_DURATION_IMAGES = 500; // Define a duration for the image spread
+
+            function interpolate(start, end, progress) {
+                progress = Math.max(0, Math.min(1, progress));
+                // Using an ease-out cubic function for a smoother fade
+                const easedProgress = 1 - Math.pow(1 - progress, 3); 
+                return start + (end - start) * easedProgress;
+            }
+
+            function ScrollAnimation() {
+                const scrollY = window.scrollY;
+                
+                // --- Part 1: Hero Container Fade Out (FIX 2) ---
+                // Fade out the entire fixed hero section to reveal the main content underneath.
+                const fadeProgress = scrollY / SCROLL_DURATION_FADE;
+                const heroOpacity = interpolate(1, 0, fadeProgress);
+                
+                heroContainer.style.opacity = heroOpacity;
+                
+                // Hide the container completely when opacity is 0 so the content below is clickable
+                if (heroOpacity <= 0.05) { // Hide when almost completely faded
+                    heroContainer.style.visibility = 'hidden';
+                } else {
+                    heroContainer.style.visibility = 'visible';
+                }
+
+                // --- Part 2: Text Animation (Initial effect) ---
+                if (scrollY <= SCROLL_DURATION_FADE) {
+                    const textProgress = scrollY / SCROLL_DURATION_FADE;
+                    
+                    // Move text up slightly (still using interpolate for smoothing the movement)
+                    const textY = interpolate(0, -50, textProgress); 
+                    
+                    // FIX: Changed interpolation for text fade to simple linear Math.max(0, 1 - progress) 
+                    // This is more robust and ensures opacity is 1.0 when scrollY=0
+                    const textFade = Math.max(0, 1 - textProgress); 
+
+                    heroText.style.transform = `translateY(${textY}px)`;
+                    heroText.style.opacity = textFade;
+                } else {
+                    // Ensure text is fully invisible once main fade is done
+                    heroText.style.opacity = 0;
+                }
+
+                // --- Part 3: Image Spread Animation ---
+                const imageScrollOffset = scrollY - (SCROLL_DURATION_FADE * 0.5); // Start spread halfway through the fade
+                const imageProgress = imageScrollOffset / SCROLL_DURATION_IMAGES;
+                const clampedImageProgress = Math.max(0, Math.min(1, imageProgress));
+
+                if (clampedImageProgress > 0) {
+                    // Use a class to trigger the CSS animations
+                    imageGrid.classList.add('animate-spread');
+                } else {
+                    imageGrid.classList.remove('animate-spread');
+                }
+            }
+
+            window.addEventListener('scroll', ScrollAnimation);
+            
+            // Trigger animation on load to set initial states
+            ScrollAnimation(); 
         </script>
     </body>
 </html>
