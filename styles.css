@@ -5,25 +5,24 @@ html, body {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #C8D9E6;
-    color: #2f4156
+    font-family: 'Inter';
+    background-color: #EFECE3;
 }
 
 .section-heading {
-    border-bottom: 2px solid #f5efeb;
+    border-bottom: #EFECE3;
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
 }
 
 .card {
-    background-color: #ffe1e6;
+    background-color: #8FABD4;
     transition: transform 0.3s, box-shadow 0.3;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgb(247, 201, 212);
+    box-shadow: 0 10px 20px #4A70A9;
     
 }
 
