@@ -46,7 +46,7 @@
                 <img src="AllTrails.jpg" alt="App 1">
                 <p>Hiking</p>
             </div>
-            <div class="icon">
+            <div class="icon email-icon">
                 <img src="Gmail.jpg" alt="App 1">
                 <p>Email</p>
             </div>
@@ -54,6 +54,31 @@
                 <img src="VScode.jpg" alt="App 1">
                 <p>Code</p>
             </div>
+            <div class="email-window" id="emailWindow">
+                <div class="window-header">
+                    <span>Email</span>
+                    <button class="close-btn" onclick="closeEmail()">X</button>
+                </div>
+                <div class="window-content">
+                    <div class='compose-form'>
+                        <label>To:</label>
+                        <input type="email" placeholder="recipient@example.com">
+                        <label>Subject:</label>
+                        <input type="text" placeholder="Subject:">
+                        <label>Message:</label>
+                        <textarea palceholder="Type here..."></textarea>
+                        <button class="sent-btn">Send</button>
+                    </div>>
+                </div>
+            </div>
+            <script>
+                document.querySelector('.email-icon').addEventListener('click', () => {
+                    document.getElementById('emailWindow').style.display = 'block';
+                });
+                function closeEmail() {
+                    document.getElementById('emailWindow').style.display = 'none';
+                }
+            </script>
         </div>
      </body>
 </html>

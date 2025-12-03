@@ -26,9 +26,9 @@ body {
 .popup {
     background: black;
     width: 350px;
-    padding: 20 px;
+    padding: 20px;
     border: 2px solid white;
-    border-radius: 8px;
+    border-radius: 0;
     color: white;
     text-align: center;
     animation: fadeIn 0.8s ease-out;
@@ -45,7 +45,7 @@ body {
 button {
     background: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0;
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
@@ -59,9 +59,9 @@ button:hover {
 
 .desktop {
     display: grid;
-    grid-template-rows: repeat(3, 250px);
+    grid-template-rows: repeat(3, 150px);
     grid-auto-flow: column;
-    grid-gap: 40px;
+    grid-gap: 30px;
     justify-content: start;
     padding-left: 50px;
     align-items: start;
@@ -83,8 +83,8 @@ button:hover {
 }
 
 .icon img {
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
     margin-bottom: 5px;
 }
 
@@ -97,6 +97,85 @@ button:hover {
 
 .icon:hover {
     transform: scale(1.1);
+}
+
+.email-window {
+    position: fixed;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 70vh;
+    background: white;
+    display: none;
+    z-index: 20;
+}
+
+.window-header {
+    background: gray;
+    padding: 5px;
+    display:flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+.close-btn {
+    background: red;
+    border: none;
+    color: white;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.window-content {
+    padding: 20px;
+    color: black;
+}
+
+.compose-form {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 95%;
+    margin: auto;;
+}
+
+.compose-form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
+.compose-form input,
+.compose-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: qpx solid black;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.compose-form textarea {
+    height:200px;
+    resize: none;
+}
+
+.send-btn {
+    width: 120px;
+    padding: 10px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.send-btn:hover {
+    background: darkred;
 }
 
 @keyframes fadeIn {
