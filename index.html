@@ -38,7 +38,7 @@
                 <img src="News.jpg" alt="App 1">
                 <p>News</p>
             </div>
-            <div class="icon">
+            <div class="icon photo-icon">
                 <img src="File.jpg" alt="App 1">
                 <p>Photos</p>
             </div>
@@ -54,31 +54,91 @@
                 <img src="VScode.jpg" alt="App 1">
                 <p>Code</p>
             </div>
-            <div class="email-window" id="emailWindow">
-                <div class="window-header">
-                    <span>Email</span>
-                    <button class="close-btn" onclick="closeEmail()">X</button>
+        </div>
+        <div class="icon-overlay" id="emailWindow">
+                <div class="email-popup app-popup">
+                    <div class="email-header">
+                        <span>New Message</span>
+                        <button class="close-button" onclick="closeEmail(event)">✖</button>
+                    </div>
+                    <div class="email-row">
+                        <span class="email-label">To:</span>
+                        <input type="text" value="adajiang2020@gmail.com" disabled />
+                    </div>
+                    <div class="email-row">
+                        <span class="email-label">Subject:</span>
+                        <input type="text" placeholder="" disabled />
+                    </div>
+                    <div class="email-body" disabled>
+                        You can contact me at adajiang2020@gmail.com or message me at +1 (860)-759-6572.
+                    </div>
                 </div>
-                <div class="window-content">
-                    <div class='compose-form'>
-                        <label>To:</label>
-                        <input type="email" placeholder="recipient@example.com">
-                        <label>Subject:</label>
-                        <input type="text" placeholder="Subject:">
-                        <label>Message:</label>
-                        <textarea palceholder="Type here..."></textarea>
-                        <button class="sent-btn">Send</button>
-                    </div>>
+            </div>
+            <div class="icon-overlay" id="photoWindow">
+                <div class="photo-popup app-popup">
+                    <div class="photo-header">
+                        <span>Photos</span>
+                        <button class="close-button" onclick="closePhoto(event)">✖</button>
+                    </div>
                 </div>
             </div>
             <script>
+                let currentZIndex = 100;
                 document.querySelector('.email-icon').addEventListener('click', () => {
-                    document.getElementById('emailWindow').style.display = 'block';
+                    const popup = document.getElementById('emailWindow');
+                    popup.style.display = 'flex';
+                    currentZIndex++;
+                    popup.style.zIndex = currentZIndex;
                 });
-                function closeEmail() {
+
+                document.querySelector('.photo-icon').addEventListener('click', () => {
+                    const popup = document.getElementById('photoWindow');
+                    popup.style.display = 'flex';
+                    currentZIndex++;
+                    popup.style.zIndex = currentZIndex;
+                });
+
+                document.querySelectorAll('.app-popup').forEach(popup => {
+                    let isDragging = false;
+                    let offsetX, offsetY;
+                    const header = popup.querySelector('div:first-child');
+                    header.addEventListener('mousedown', (e) => {
+                        isDragging = true;
+                        const rect = popup.getBoundingClientRect();
+                        offsetX = e.clientX - rect.left;
+                        offsetY = e.clientY - rect.top;
+                        const overlay = popup.parentElement;
+                        currentZIndex++;
+                        overlay.style.zIndex = currentZIndex;
+                    });
+
+                    document.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        popup.style.position = 'fixed';
+                        popup.style.left = e.clientX - offsetX + 'px';
+                        popup.style.top = e.clientY - offsetY + 'px';
+                    });
+
+                    document.addEventListener('mouseup', () => {
+                        isDragging = false;
+                    });
+
+                    popup.addEventListener('mousedown', () => {
+                        const overlay = popup.parentElement;
+                        currentZIndex++;
+                        overlay.style.zIndex = currentZIndex;
+                    });
+                });
+                function closeEmail(e) {
+                    e.stopPropagation(e);
                     document.getElementById('emailWindow').style.display = 'none';
-                }
+                };
+
+                function closePhoto(e) {
+                    e.stopPropagation(e);
+                    document.getElementById('photoWindow').style.display = 'none';
+                };
+
             </script>
-        </div>
      </body>
 </html>
