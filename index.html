@@ -80,6 +80,25 @@
                         <span>Photos</span>
                         <button class="close-button" onclick="closePhoto(event)">✖</button>
                     </div>
+                    <div class="photo-grid">
+                        <div class="photo-folder"  data-folder="family">
+                            <img src="folder.png">
+                            <p>Family</p>
+                        </div>
+                        <div class="photo-folder" data-folder="vacation">
+                            <img src="folder.png">
+                            <p>Debate</p>
+                        </div>
+                        <div class="photo-folder" data-folder="hobbies">
+                            <img src="folder.png">
+                            <p>Hobbies</p>
+                        </div>
+                        <div class="photo-folder" data-folder="travel">
+                            <img src="folder.png">
+                            <p>Travel</p>
+                        </div>
+                        <div class="photo-flyout-container"></div>
+                    </div>
                 </div>
             </div>
             <script>
@@ -138,6 +157,38 @@
                     e.stopPropagation(e);
                     document.getElementById('photoWindow').style.display = 'none';
                 };
+
+                const folders = document.querySelectorAll('.photo-folder');
+                const flyoutContainer = document.querySelector('.photo-flyout-container');
+                folders.forEach(folder => {
+                    folder.addEventListener('click', () => {
+                        const folderName = folder.dataset.folder;
+                        const folderPhotos = {
+                            family: ['family1.jpg'],
+                            debate: ['debate1.jpg'],
+                            hobbies: ['hobbies1.jpg'],
+                            travel: ['travel1.jpg']
+
+                        };
+                        const photoSrc = folderPhotos[folderName][0];
+                        const photo = document.createElement('img');
+                        photo.src = photoSrc;
+                        photo.className = 'photo-flyout';
+                        const rect = folder.getBoundingClientRect();
+                        const containerRect = flyoutContainer.getBoundingClientRect();
+                        const startX = rect.left - containerRect.left;
+                        const startY = rect.top - containerRect.top;
+
+                        photo.style.left = startX + 'px';
+                        photo.style.top = startY + 'px';
+                        flyoutContainer.appendChild(photo);
+                        photo.getBoundingClientRect();
+                        const targetX = startX + 200;
+                        const targetY = startY - 150;
+                        photo.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
+                        photo.style.opacity = 1;
+                    });
+                });
 
             </script>
      </body>
