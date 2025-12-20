@@ -85,7 +85,7 @@
                             <img src="folder.png">
                             <p>Family</p>
                         </div>
-                        <div class="photo-folder" data-folder="vacation">
+                        <div class="photo-folder" data-folder="debate">
                             <img src="folder.png">
                             <p>Debate</p>
                         </div>
@@ -97,7 +97,15 @@
                             <img src="folder.png">
                             <p>Travel</p>
                         </div>
-                        <div class="photo-flyout-container"></div>
+                    </div>
+                    <div class="photo-preview-overlay" id="photoPreview">
+                        <div class="photo-preview">
+                            <img class="preview-image" src="" alt="Preview">
+                            <div class="preview-letter">
+                                <p class="preview-text"></p>
+                                <button class="preview-close">Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,43 +159,48 @@
                 function closeEmail(e) {
                     e.stopPropagation(e);
                     document.getElementById('emailWindow').style.display = 'none';
-                };
+                }
 
                 function closePhoto(e) {
                     e.stopPropagation(e);
                     document.getElementById('photoWindow').style.display = 'none';
+                    document.getElementById('photoPreview').style.display = 'none';
+                }
+                const previewOverlay = document.getElementById('photoPreview');
+                const previewImage = document.querySelector('.preview-image');
+                const previewText = document.querySelector('.preview-text');
+                const previewClose = document.querySelector('.preview-close');
+                const folderData = {
+                    family: {
+                        image: 'family1.jpg',
+                        text: 'Me and My Dad'
+                    },
+                    debate: {
+                        image: 'debate1.jpg',
+                        text: 'St. Nicks Speech and Debate 12/13/2025'
+                    },
+                    hobbies: {
+                        image: 'hobbies1.jpg',
+                        text: 'I love eating good food'
+                    },
+                    travel: {
+                        image: 'travel1.jpg',
+                        text: 'My Japan Trip April 2025'
+                    }
                 };
 
-                const folders = document.querySelectorAll('.photo-folder');
-                const flyoutContainer = document.querySelector('.photo-flyout-container');
-                folders.forEach(folder => {
-                    folder.addEventListener('click', () => {
-                        const folderName = folder.dataset.folder;
-                        const folderPhotos = {
-                            family: ['family1.jpg'],
-                            debate: ['debate1.jpg'],
-                            hobbies: ['hobbies1.jpg'],
-                            travel: ['travel1.jpg']
-
-                        };
-                        const photoSrc = folderPhotos[folderName][0];
-                        const photo = document.createElement('img');
-                        photo.src = photoSrc;
-                        photo.className = 'photo-flyout';
-                        const rect = folder.getBoundingClientRect();
-                        const containerRect = flyoutContainer.getBoundingClientRect();
-                        const startX = rect.left - containerRect.left;
-                        const startY = rect.top - containerRect.top;
-
-                        photo.style.left = startX + 'px';
-                        photo.style.top = startY + 'px';
-                        flyoutContainer.appendChild(photo);
-                        photo.getBoundingClientRect();
-                        const targetX = startX + 200;
-                        const targetY = startY - 150;
-                        photo.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
-                        photo.style.opacity = 1;
+                document.querySelectorAll('.photo-folder').forEach(folder => {
+                    folder.addEventListener("click", () => {
+                        const key = folder.dataset.folder;
+                        const data = folderData[key];
+                        if (!data) return;
+                        previewImage.src = data.image;
+                        previewText.textContent = data.text;
+                        previewOverlay.style.display = 'flex';
                     });
+                });
+                previewClose.addEventListener('click', () => {
+                    previewOverlay.style.display = 'none';
                 });
 
             </script>
