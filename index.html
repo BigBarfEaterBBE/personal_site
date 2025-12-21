@@ -39,19 +39,19 @@
                 <p>News</p>
             </div>
             <div class="icon photo-icon">
-                <img src="File.jpg" alt="App 1">
+                <img src="File.png" alt="App 1">
                 <p>Photos</p>
             </div>
             <div class="icon">
-                <img src="AllTrails.jpg" alt="App 1">
-                <p>Hiking</p>
+                <img src="Fitness.jpg" alt="App 1">
+                <p>Sports</p>
             </div>
             <div class="icon email-icon">
                 <img src="Gmail.jpg" alt="App 1">
                 <p>Email</p>
             </div>
             <div class="icon">
-                <img src="VScode.jpg" alt="App 1">
+                <img src="VScode.png" alt="App 1">
                 <p>Code</p>
             </div>
         </div>
@@ -100,10 +100,58 @@
                     </div>
                     <div class="photo-preview-overlay" id="photoPreview">
                         <div class="photo-preview">
-                            <img class="preview-image" src="" alt="Preview">
+                            <div class="preview-image-wrapper">
+                                <img class="preview-image" src="" alt="Preview">
+                                <div class="photo-nav">
+                                    <button class="photo-nav-btn prev"><</button>
+                                    <button class="photo-nav-btn next">></button>
+                                </div>
+                            </div>
                             <div class="preview-letter">
                                 <p class="preview-text"></p>
                                 <button class="preview-close">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="icon-overlay" id="fitnessWindow">
+                <div class="fitness-popup app-popup">
+                    <div class="fitness-header">
+                        <span>Fitness</span>
+                        <button class="close-button" onclick="closeFitness(event)">✖</button>
+                    </div>
+                    <div class="fitness-list">
+                        <div class="fitness-row">
+                            <img src="climbing_icon.png" class="fitness-icon">
+                            <span class="fitness-title">Rock Climbing</span>
+                            <div class="fitness-expand">
+                                <div class="fitness-text">ROCK CLIMBING TEXT HERE</div>
+                                <img src="climbing_photo.jpg" class="fitness-photo">
+                            </div>
+                        </div>
+                        <div class="fitness-row">
+                            <img src="sailing_icon.png" class="fitness-icon">
+                            <span class="fitness-title">Sailing</span>
+                            <div class="fitness-expand">
+                                <div class="fitness-text">SAILING TEXT HERE</div>
+                                <img src="sailing_photo.jpg" class="fitness-photo">
+                            </div>
+                        </div>
+                        <div class="fitness-row">
+                            <img src="hiking_icon.png" class="fitness-icon">
+                            <span class="fitness-title">Hiking</span>
+                            <div class="fitness-expand">
+                                <div class="fitness-text">HIKING TEXT HERE</div>
+                                <img src="hiking_photo.jpg" class="fitness-photo">
+                            </div>
+                        </div>
+                        <div class="fitness-row">
+                            <img src="badminton_icon.png" class="fitness-icon">
+                            <span class="fitness-title">Badminton</span>
+                            <div class="fitness-expand">
+                                <div class="fitness-text">BADMINTON TEXT HERE</div>
+                                <img src="badminton_photo.jpg" class="fitness-photo">
                             </div>
                         </div>
                     </div>
@@ -172,33 +220,49 @@
                 const previewClose = document.querySelector('.preview-close');
                 const folderData = {
                     family: {
-                        image: 'family1.jpg',
+                        images: ['family1.jpg', 'family2.jpg', 'family3.jpg'],
                         text: 'Me and My Dad'
                     },
                     debate: {
-                        image: 'debate1.jpg',
+                        images: ['debate1.jpg', 'debate2.jpg', 'debate3.jpg'],
                         text: 'St. Nicks Speech and Debate 12/13/2025'
                     },
                     hobbies: {
-                        image: 'hobbies1.jpg',
+                        images: ['hobbies1.jpg', 'hobbies2.jpg', 'hobbies3.jpg'],
                         text: 'I love eating good food'
                     },
                     travel: {
-                        image: 'travel1.jpg',
+                        images: ['travel1.jpg', 'travel2.jpg', 'travel3.jpg'],
                         text: 'My Japan Trip April 2025'
                     }
                 };
-
+                let currentPhotos = [];
+                let currentIndex = 0;
                 document.querySelectorAll('.photo-folder').forEach(folder => {
                     folder.addEventListener("click", () => {
                         const key = folder.dataset.folder;
                         const data = folderData[key];
-                        if (!data) return;
-                        previewImage.src = data.image;
+                        currentPhotos = data.images;
+                        currentIndex = 0;
+
+                        previewImage.src = currentPhotos[currentIndex];
                         previewText.textContent = data.text;
                         previewOverlay.style.display = 'flex';
                     });
                 });
+
+                document.querySelector('.photo-nav-btn.next').addEventListener('click', () => {
+                    if (!currentPhotos.length) return;
+                    currentIndex = (currentIndex + 1) % currentPhotos.length;
+                    previewImage.src = currentPhotos[currentIndex];
+                });
+
+                document.querySelector('.photo-nav-btn.prev').addEventListener('click', () => {
+                    if (!currentPhotos.length) return;
+                    currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
+                    previewImage.src = currentPhotos[currentIndex];
+                });
+                
                 previewClose.addEventListener('click', () => {
                     previewOverlay.style.display = 'none';
                 });
