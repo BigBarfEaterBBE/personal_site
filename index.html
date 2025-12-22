@@ -16,7 +16,7 @@
             function startPortfolio() {
                 const popup = document.querySelector('.popup');
                 const bg = document.querySelector('.bg-image');
-                bg.style.backgroundImage = "url('background.png')";
+                bg.style.backgroundImage = "url('assets/desktop/background.png')";
                 bg.style.opacity = "1";
                 // fade out popup
                 popup.style.opacity = "0";
@@ -31,27 +31,27 @@
         </script>
         <div class="desktop" id="desktop">
             <div class="icon">
-                <img src="Spotify Logo.jpg" alt="App 1">
+                <img src="assets\desktop\Spotify Logo.jpg" alt="App 1">
                 <p>Music</p>
             </div>
             <div class="icon">
-                <img src="News.jpg" alt="App 1">
+                <img src="assets\desktop\News.jpg" alt="App 1">
                 <p>News</p>
             </div>
             <div class="icon photo-icon">
-                <img src="File.png" alt="App 1">
+                <img src="assets\desktop\File.png" alt="App 1">
                 <p>Photos</p>
             </div>
-            <div class="icon">
-                <img src="Fitness.jpg" alt="App 1">
+            <div class="icon fitness-icon">
+                <img src="assets\desktop\Fitness.jpg" alt="App 1">
                 <p>Sports</p>
             </div>
             <div class="icon email-icon">
-                <img src="Gmail.jpg" alt="App 1">
+                <img src="assets\desktop\Gmail.jpg" alt="App 1">
                 <p>Email</p>
             </div>
             <div class="icon">
-                <img src="VScode.png" alt="App 1">
+                <img src="assets\desktop\VScode.png" alt="App 1">
                 <p>Code</p>
             </div>
         </div>
@@ -82,19 +82,19 @@
                     </div>
                     <div class="photo-grid">
                         <div class="photo-folder"  data-folder="family">
-                            <img src="folder.png">
+                            <img src="assets/photos/folder.png">
                             <p>Family</p>
                         </div>
                         <div class="photo-folder" data-folder="debate">
-                            <img src="folder.png">
+                            <img src="assets/photos/folder.png">
                             <p>Debate</p>
                         </div>
                         <div class="photo-folder" data-folder="hobbies">
-                            <img src="folder.png">
+                            <img src="assets/photos/folder.png">
                             <p>Hobbies</p>
                         </div>
                         <div class="photo-folder" data-folder="travel">
-                            <img src="folder.png">
+                            <img src="assets/photos/folder.png">
                             <p>Travel</p>
                         </div>
                     </div>
@@ -123,35 +123,43 @@
                     </div>
                     <div class="fitness-list">
                         <div class="fitness-row">
-                            <img src="climbing_icon.png" class="fitness-icon">
-                            <span class="fitness-title">Rock Climbing</span>
+                            <div class='fitness-row-header'>
+                                <img src="assets\fitness\climbing_icon.png" class="fitness-row-icon">
+                                <span class="fitness-title">Rock Climbing</span>
+                            </div>
                             <div class="fitness-expand">
                                 <div class="fitness-text">ROCK CLIMBING TEXT HERE</div>
-                                <img src="climbing_photo.jpg" class="fitness-photo">
+                                <img src="assets\fitness\climbing_photo.jpg" class="fitness-photo">
                             </div>
                         </div>
                         <div class="fitness-row">
-                            <img src="sailing_icon.png" class="fitness-icon">
-                            <span class="fitness-title">Sailing</span>
+                            <div class='fitness-row-header'>
+                                <img src="assets\fitness\sailing_icon.png" class="fitness-row-icon">
+                                <span class="fitness-title">Sailing</span>
+                            </div>
                             <div class="fitness-expand">
                                 <div class="fitness-text">SAILING TEXT HERE</div>
-                                <img src="sailing_photo.jpg" class="fitness-photo">
+                                <img src="assets\fitness\sailing_photo.jpg" class="fitness-photo">
                             </div>
                         </div>
                         <div class="fitness-row">
-                            <img src="hiking_icon.png" class="fitness-icon">
-                            <span class="fitness-title">Hiking</span>
+                            <div class='fitness-row-header'>
+                                <img src="assets\fitness\hiking_icon.png" class="fitness-row-icon">
+                                <span class="fitness-title">Hiking</span>
+                            </div>
                             <div class="fitness-expand">
                                 <div class="fitness-text">HIKING TEXT HERE</div>
-                                <img src="hiking_photo.jpg" class="fitness-photo">
+                                <img src="assets\fitness\hiking_photo.jpg" class="fitness-photo">
                             </div>
                         </div>
                         <div class="fitness-row">
-                            <img src="badminton_icon.png" class="fitness-icon">
-                            <span class="fitness-title">Badminton</span>
+                            <div class='fitness-row-header'>
+                                <img src="assets\fitness\badminton_icon.png" class="fitness-row-icon">
+                                <span class="fitness-title">Badminton</span>
+                            </div>
                             <div class="fitness-expand">
                                 <div class="fitness-text">BADMINTON TEXT HERE</div>
-                                <img src="badminton_photo.jpg" class="fitness-photo">
+                                <img src="assets\fitness\badminton_photo.jpg" class="fitness-photo">
                             </div>
                         </div>
                     </div>
@@ -159,6 +167,16 @@
             </div>
             <script>
                 let currentZIndex = 100;
+                document.querySelector('.fitness-icon').addEventListener('click', () => {
+                    const popup = document.getElementById('fitnessWindow');
+                    popup.style.display = 'flex';
+                    currentZIndex++;
+                    popup.style.zIndex = currentZIndex;
+                });
+                function closeFitness(e) {
+                    e.stopPropagation();
+                    document.getElementById('fitnessWindow').style.display = 'none';
+                }
                 document.querySelector('.email-icon').addEventListener('click', () => {
                     const popup = document.getElementById('emailWindow');
                     popup.style.display = 'flex';
@@ -220,19 +238,19 @@
                 const previewClose = document.querySelector('.preview-close');
                 const folderData = {
                     family: {
-                        images: ['family1.jpg', 'family2.jpg', 'family3.jpg'],
+                        images: ['assets/photos/family1.jpg.jpg', 'assets/photos/family2.jpg', 'assets/photos/family3.jpg'],
                         text: 'Me and My Dad'
                     },
                     debate: {
-                        images: ['debate1.jpg', 'debate2.jpg', 'debate3.jpg'],
+                        images: ['assets/photos/debate1.jpg', 'assets/photos/debate2.jpg', 'assets/photos/debate3.jpg'],
                         text: 'St. Nicks Speech and Debate 12/13/2025'
                     },
                     hobbies: {
-                        images: ['hobbies1.jpg', 'hobbies2.jpg', 'hobbies3.jpg'],
+                        images: ['assets/photos/hobbies1.jpg', 'assets/photos/hobbies2.jpg', 'assets/photos/hobbies3.jpg'],
                         text: 'I love eating good food'
                     },
                     travel: {
-                        images: ['travel1.jpg', 'travel2.jpg', 'travel3.jpg'],
+                        images: ['assets/photos/travel1.jpg', 'assets/photos/travel2.jpg', 'assets/photos/travel3.jpg'],
                         text: 'My Japan Trip April 2025'
                     }
                 };
