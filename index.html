@@ -12,23 +12,6 @@
             <h1>Ada's Portfolio</h1>
             <button onclick="startPortfolio()">Begin</button>
         </div>
-        <script>
-            function startPortfolio() {
-                const popup = document.querySelector('.popup');
-                const bg = document.querySelector('.bg-image');
-                bg.style.backgroundImage = "url('assets/desktop/background.png')";
-                bg.style.opacity = "1";
-                // fade out popup
-                popup.style.opacity = "0";
-                popup.style.transform= "scale(0.9)";
-                popup.style.transition = "0.4s";
-                setTimeout(() => popup.remove(), 400);
-                setTimeout(() => {
-                    desktop.style.opacity = "1";
-                    desktop.style.pointerEvents = "auto";
-                }, 500);
-            }
-        </script>
         <div class="desktop" id="desktop">
             <div class="icon">
                 <img src="assets\desktop\Spotify Logo.jpg" alt="App 1">
@@ -50,7 +33,7 @@
                 <img src="assets\desktop\Gmail.jpg" alt="App 1">
                 <p>Email</p>
             </div>
-            <div class="icon">
+            <div class="icon vscode-icon">
                 <img src="assets\desktop\VScode.png" alt="App 1">
                 <p>Code</p>
             </div>
@@ -165,126 +148,34 @@
                     </div>
                 </div>
             </div>
-            <script>
-                let currentZIndex = 100;
-                document.querySelector('.fitness-icon').addEventListener('click', () => {
-                    const popup = document.getElementById('fitnessWindow');
-                    popup.style.display = 'flex';
-                    currentZIndex++;
-                    popup.style.zIndex = currentZIndex;
-                });
-                function closeFitness(e) {
-                    e.stopPropagation();
-                    document.getElementById('fitnessWindow').style.display = 'none';
-                }
-                document.querySelector('.email-icon').addEventListener('click', () => {
-                    const popup = document.getElementById('emailWindow');
-                    popup.style.display = 'flex';
-                    currentZIndex++;
-                    popup.style.zIndex = currentZIndex;
-                });
-
-                document.querySelector('.photo-icon').addEventListener('click', () => {
-                    const popup = document.getElementById('photoWindow');
-                    popup.style.display = 'flex';
-                    currentZIndex++;
-                    popup.style.zIndex = currentZIndex;
-                });
-
-                document.querySelectorAll('.app-popup').forEach(popup => {
-                    let isDragging = false;
-                    let offsetX, offsetY;
-                    const header = popup.querySelector('div:first-child');
-                    header.addEventListener('mousedown', (e) => {
-                        isDragging = true;
-                        const rect = popup.getBoundingClientRect();
-                        offsetX = e.clientX - rect.left;
-                        offsetY = e.clientY - rect.top;
-                        const overlay = popup.parentElement;
-                        currentZIndex++;
-                        overlay.style.zIndex = currentZIndex;
-                    });
-
-                    document.addEventListener('mousemove', (e) => {
-                        if (!isDragging) return;
-                        popup.style.position = 'fixed';
-                        popup.style.left = e.clientX - offsetX + 'px';
-                        popup.style.top = e.clientY - offsetY + 'px';
-                    });
-
-                    document.addEventListener('mouseup', () => {
-                        isDragging = false;
-                    });
-
-                    popup.addEventListener('mousedown', () => {
-                        const overlay = popup.parentElement;
-                        currentZIndex++;
-                        overlay.style.zIndex = currentZIndex;
-                    });
-                });
-                function closeEmail(e) {
-                    e.stopPropagation(e);
-                    document.getElementById('emailWindow').style.display = 'none';
-                }
-
-                function closePhoto(e) {
-                    e.stopPropagation(e);
-                    document.getElementById('photoWindow').style.display = 'none';
-                    document.getElementById('photoPreview').style.display = 'none';
-                }
-                const previewOverlay = document.getElementById('photoPreview');
-                const previewImage = document.querySelector('.preview-image');
-                const previewText = document.querySelector('.preview-text');
-                const previewClose = document.querySelector('.preview-close');
-                const folderData = {
-                    family: {
-                        images: ['assets/photos/family1.jpg.jpg', 'assets/photos/family2.jpg', 'assets/photos/family3.jpg'],
-                        text: 'Me and My Dad'
-                    },
-                    debate: {
-                        images: ['assets/photos/debate1.jpg', 'assets/photos/debate2.jpg', 'assets/photos/debate3.jpg'],
-                        text: 'St. Nicks Speech and Debate 12/13/2025'
-                    },
-                    hobbies: {
-                        images: ['assets/photos/hobbies1.jpg', 'assets/photos/hobbies2.jpg', 'assets/photos/hobbies3.jpg'],
-                        text: 'I love eating good food'
-                    },
-                    travel: {
-                        images: ['assets/photos/travel1.jpg', 'assets/photos/travel2.jpg', 'assets/photos/travel3.jpg'],
-                        text: 'My Japan Trip April 2025'
-                    }
-                };
-                let currentPhotos = [];
-                let currentIndex = 0;
-                document.querySelectorAll('.photo-folder').forEach(folder => {
-                    folder.addEventListener("click", () => {
-                        const key = folder.dataset.folder;
-                        const data = folderData[key];
-                        currentPhotos = data.images;
-                        currentIndex = 0;
-
-                        previewImage.src = currentPhotos[currentIndex];
-                        previewText.textContent = data.text;
-                        previewOverlay.style.display = 'flex';
-                    });
-                });
-
-                document.querySelector('.photo-nav-btn.next').addEventListener('click', () => {
-                    if (!currentPhotos.length) return;
-                    currentIndex = (currentIndex + 1) % currentPhotos.length;
-                    previewImage.src = currentPhotos[currentIndex];
-                });
-
-                document.querySelector('.photo-nav-btn.prev').addEventListener('click', () => {
-                    if (!currentPhotos.length) return;
-                    currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
-                    previewImage.src = currentPhotos[currentIndex];
-                });
-                
-                previewClose.addEventListener('click', () => {
-                    previewOverlay.style.display = 'none';
-                });
-
-            </script>
+            <div class="icon-overlay" id="vscodeWindow">
+                <div class="vscode-popup app-popup">
+                    <div class="vscode-header">
+                        <span>VSCode</span>
+                        <button class="close-button" onclick="closeVSCode(event)">✖</button>
+                    </div>
+                    <div class="vscode-body">
+                        <div class="vscode-sidebar">
+                            <ul class="vscode-file-list">
+                                <li>Project1</li>
+                                <li>Project2</li>
+                                <li>Project3</li>
+                                <li>Project4</li>
+                            </ul>
+                        </div>
+                        <div class="vscode-editor-container">
+                            <div class="vscode-tabs">
+                                <!--tabs are added here dynamically-->
+                            </div>
+                            <div class="vscode-editor">
+                                <p class="vscode-placeholder">Open a file to get started</p>
+                                <pre class="vscode-file-content"></pree>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <script src="script.js"></script>
      </body>
 </html>
