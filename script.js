@@ -37,7 +37,7 @@ document.querySelector('.photo-icon').addEventListener('click', () => {
 document.querySelector('.vscode-icon').addEventListener('click', () => {
     const popup = document.getElementById('vscodeWindow');
     popup.style.display = 'flex';
-    currentIndex++;
+    currentZIndex++;
     popup.style.zIndex = currentZIndex;
 })
 
@@ -94,8 +94,74 @@ function closeVSCode(e) {
     document.getElementById('vscodeWindow').style.display = 'none';
 }
 
+//vscode file content
+const vscodeFileContent = {
+    "Anki Enforcer": {
+        demo: `
+            <video controls width="90%">
+                <source src="placeholder" type="video/mp4">
+            </video>
+        `,
+        description: "67",
+        learned: "..."
+    },
+    "Posture Detector": {
+        demo: `
+            <video controls width="90%">
+                <source src="placeholder" type="video/mp4">
+            </video>
+        `,
+        description: "89",
+        learned: "..."
+    },
+    "Ticketmaster Trainer": {
+        demo: `
+            <video controls width="90%">
+                <source src="placeholder" type="video/mp4">
+            </video>
+        `,
+        description: "10",
+        learned: "..."
+    },
+    "Zeroni Dressup Game": {
+        demo: `
+            <video controls width="90%">
+                <source src="placeholder" type="video/mp4">
+            </video>
+        `,
+        description: "11",
+        learned: "..."
+    },
+    "Portfolio Website": {
+        demo: `
+            <video controls width="90%">
+                <source src="placeholder" type="video/mp4">
+            </video>
+        `,
+        description: "...",
+        learned: "..."
+    }
+};
 
 //vscode file click
+function renderVSCodeFile(fileName) {
+    const data = vscodeFileContent[fileName];
+    if (!data) return;
+    editor.innerHTML = `
+    <div class="vscode-section">
+        <h3>Demo</h3>
+        <div class="vscode-demo">${data.demo}</div>
+    </div>
+    <div class="vscode-section">
+        <h3>Description</h3>
+        <p>${data.description}</p>
+    </div>
+    <div class="vscode-section">
+        <h3>What I Learned</h3>
+        <p>${data.learned}</p>
+    </div>
+    `.trim();
+}
 const tabsContainer = document.querySelector('.vscode-tabs');
 const editor = document.querySelector('.vscode-file-content');
 const placeholder = document.querySelector('.vscode-placeholder');
@@ -103,23 +169,28 @@ document.querySelectorAll('.vscode-file-list li').forEach(file => {
     file.addEventListener('click', () => {
         const fileName = file.textContent;
         //check if tab already open
-        if ([...tabsConotainer.children].some(tab => tab.dataset.file === fileName)) {
-            seetActiveTab(fileName);
+        if ([...tabsContainer.children].some(tab => tab.dataset.file === fileName)) {
+            setActiveTab(fileName);
             return;
         }
+
+        //deactivate oter tabs
+        tabsContainer.querySelectorAll('.vscode-tab').forEach(t => t.classList.remove('active'));
 
         //create new tab
         const tab = document.createElement('div');
         tab.className = 'vscode-tab active';
         tab.dataset.file = fileName;
         tab.innerHTML = `${fileName} <span class="close-tab">✖</span>`;
-        //deactivate other tabs
-        tabsContainer.querySelectorAll('.vscode-tab').forEach(t => t.classList.remove('active'));
-        tabsContainier.appendChild(tab);
-        //show ediitor conotent (placeholder)
+        tabsContainer.appendChild(tab);
+
+        //show ediitor conotent 
         placeholder.style.display = 'none';
         editor.style.display = 'block';
-        editor.textContent = `//Placeholder content for ${fileName}`;
+        const data = vscodeFileContent[fileName];
+        renderVSCodeFile(fileName);
+
+
         //tab click to activate
         tab.addEventListener('click', (e) => {
             if (e.target.classList.contains('close-tab')) return;
@@ -142,9 +213,9 @@ document.querySelectorAll('.vscode-file-list li').forEach(file => {
 
         function setActiveTab(name) {
             tabsContainer.querySelectorAll('.vscode-tab').forEach(t => t.classList.remove('active'));
-            const activeTab = [...tabsContainer.children].findIndex(t => t.dataset.file === name);
+            const activeTab = [...tabsContainer.children].find(t => t.dataset.file === name);
             if (activeTab) activeTab.classList.add('active');
-            editor.textContent = `//placeholder content for ${name}`
+            renderVSCodeFile(name)
         }
     });
 });

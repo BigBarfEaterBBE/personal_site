@@ -463,9 +463,10 @@ button:hover {
 }
 
 .vscode-editor {
+    padding-top: 0;
     flex: 1;
     background: #1e1e1e;
-    padding: 16px;
+    padding: 6px 12px;
     overflow-y: auto;
 }
 
@@ -474,8 +475,10 @@ button:hover {
 }
 
 .vscode-file-content {
+    margin: 0;
+    padding: 0;
     display: none;
-    white-space: pre-wrap;
+    white-space: normal;
     word-wrap: break-word;
 }
 
@@ -522,6 +525,46 @@ button:hover {
 
 .vscode-tab .close-tab:hover {
     color: #f00;
+}
+
+.vscode-section {
+    margin-bottom: 5px;
+}
+
+.vscode-section h3 {
+    margin: 0 0 4px 0;
+    color: #9cdcfe;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.vscode-section p {
+    margin: 0;
+    padding: 5px;
+    color: #d4d4d4;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.vscode-editor video {
+    border-radius: 6px;
+    background: #000;
+}
+
+.vscode-demo {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+}
+
+.vscode-section:first-child {
+    margin-top: 0;
+}
+
+.vscode-demo video {
+    display: block;
+    margin: 4px;
 }
 
 /* GENERAL */
