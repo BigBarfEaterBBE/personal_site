@@ -567,6 +567,119 @@ button:hover {
     margin: 4px;
 }
 
+
+/* MUSIC APP */
+.music-popup {
+    width: 1100px;
+    height: 700px;
+    background: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.music-header {
+    padding: 8px 12px;
+    background: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.music-body {
+    flex: 1;
+    display: flex;
+}
+
+.music-sidebar {
+    width: 80px;
+    background: #000;
+    padding: 10px;
+}
+
+.playlist {
+    position: relative;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.playlist-tooltip {
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.playlist:hover .playlist-tooltip {
+    opacity: 1;
+}
+
+.playlist img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.playlist:hover .playlisit-name {
+    opacity: 1;
+}
+
+.music-player {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+#musicPlayer {
+    width: 100%;
+    max-height: 240px;
+    background: black;
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 10px 0;
+}
+
+.music-controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#musicProgress {
+    width: 100%;
+}
+
+.music-queue {
+    width: 180px;
+    background: #181818;
+    padding: 10px;
+}
+
+.music-queue ul {
+    list-style: none;
+    padding: 0;
+}
+
+.music-queue li {
+    font-size: 13px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
 /* GENERAL */
 .close-button {
     background: none;

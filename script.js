@@ -39,6 +39,12 @@ document.querySelector('.vscode-icon').addEventListener('click', () => {
     popup.style.display = 'flex';
     currentZIndex++;
     popup.style.zIndex = currentZIndex;
+});
+document.querySelector('.music-icon').addEventListener('click', () => {
+    const popup = document.getElementById('musicWindow');
+    popup.style.display = 'flex';
+    currentZIndex++;
+    popup.style.zIndex = currentZIndex;
 })
 
 /* desktop app window drag */
@@ -92,6 +98,10 @@ function closeFitness(e) {
 function closeVSCode(e) {
     e.stopPropagation();
     document.getElementById('vscodeWindow').style.display = 'none';
+}
+function closeMusic(e) {
+    e.stopPropagation();
+    document.getElementById("musicWindow").style.display = 'none';
 }
 
 //vscode file content
@@ -276,3 +286,78 @@ document.querySelector('.photo-nav-btn.prev').addEventListener('click', () => {
 previewClose.addEventListener('click', () => {
     previewOverlay.style.display = 'none';
 });
+
+//music app stuff
+const player = document.getElementById("musicPlayer");
+const titleEl = document.getElementById("musicTitle");
+const musicData = {
+    "2023-2024": [
+        {
+            title: "song1",
+            artist: "artist1",
+            src: "source1"
+        },
+        {
+            title: "song2",
+            artist: "artist2",
+            src: "source2"
+        }
+    ],
+    "2024-2025": [
+        {
+            title: "song1",
+            artist: "artist1",
+            src: "source1"
+        },
+        {
+            title: "song2",
+            artist: "artist2",
+            src: "source2"
+        }
+    ],
+    "2025-2026": [
+        {
+            title: "song1",
+            artist: "artist1",
+            src: "source1"
+        },
+        {
+            title: "song2",
+            artist: "artist2",
+            src: "source2"
+        }
+    ]
+}
+
+let currentQueue = [];
+let currentSongIndex = 0;
+document.querySelectorAll(".playlist").forEach(p => {
+    p.addEventListener("click", () => {
+        const name = p.dataset.playlist;
+        currentQueue = musicData[name];
+        currentSongIndex = 0;
+        loadSong(currentQueue[0]);
+        renderQueue();
+    });
+});
+
+function loadSong(song) {
+    player.src = song.src;
+    titleEl.textContent = song.title;
+    artistEl.textContent = song.artist;
+    player.play();
+}
+
+function renderQueue() {
+    const ul = document.getElementById("queueList");
+    ul.innerHTML = "";
+    currentQueue.forEach((song, i) => {
+        const li = document.createElement("li");
+        li.textContent = song.title;
+        li.onclick = () => {
+            currentSongIndex = i;
+            loadSong(song);
+        };
+        ul.appendChild(li);
+    });
+}
