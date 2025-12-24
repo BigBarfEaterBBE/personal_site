@@ -679,6 +679,12 @@ button:hover {
     margin-bottom: 8px;
     cursor: pointer;
 }
+.music-info p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #aaa;
+}
+
 
 /* GENERAL */
 .close-button {

@@ -288,46 +288,131 @@ previewClose.addEventListener('click', () => {
 });
 
 //music app stuff
-const player = document.getElementById("musicPlayer");
-const titleEl = document.getElementById("musicTitle");
 const musicData = {
     "2023-2024": [
         {
-            title: "song1",
-            artist: "artist1",
-            src: "source1"
+            title: "Ember Skies",
+            artist: "Kevin Day",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/ember_skies.png",
+            src: "assets/music/songs/2023-2024/Ember Skies_by_Kevin_Day.mp3"
         },
         {
-            title: "song2",
-            artist: "artist2",
-            src: "source2"
+            title: "Flying High",
+            artist: "William Owens",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/flying_high.png",
+            src: "assets/music/songs/2023-2024/Flying Highk_by_William_Owens.mp3"
+        },
+        {
+            title: "Joshua",
+            artist: "Andrew Balent",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/joshua.png",
+            src: "assets/music/songs/2023-2024/Joshua_arr_Andrew_Balent.mp3"
         }
     ],
     "2024-2025": [
         {
-            title: "song1",
-            artist: "artist1",
-            src: "source1"
+            title: "Winter Winds",
+            artist: "Randall Standridge",
+            type: "video",
+            src: "assets/music/songs/2024-2025/Winter_Winds_by_Randall_Standridge-1.mp4"
         },
         {
-            title: "song2",
-            artist: "artist2",
-            src: "source2"
+            title: "Ancient Voices",
+            artist: "Michael Sweeney",
+            type: "video",
+            src: "assets/music/songs/2024-2025/Ancient_Voices_by_Michael_Sweeney-1.mp4"
+        },
+        {
+            title: "The Tempest",
+            artist: "Robert W Smith",
+            type: "video",
+            src: "assets/music/songs/2024-2025/The_Tempest_by_Robert_W_Smith-1.mp4"
+        },
+        {
+            title: "Spitfire",
+            artist: "William Owens",
+            type: "video",
+            src: "assets/music/songs/2024-2025/Spitfire_by_William_Owens-1.mp4"
+        },
+        {
+            title: "A Song For Friends",
+            artist: "Larry Daehn",
+            type: "video",
+            src: "assets/music/songs/2024-2025/A_Song_For_Friends_by_Larry_Daehn-1.mp4"
+        },
+        {
+            title: "Blue Ridge Reel",
+            artist: "Brian Balmages",
+            type: "video",
+            src: "assets/music/songs/2024-2025/Blue_Ridge_Reel_by_Brian_Balmages-1.mp4"
         }
     ],
     "2025-2026": [
         {
-            title: "song1",
-            artist: "artist1",
-            src: "source1"
+            title: "Jupiter",
+            artist: "Gustav Holst",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/jupiter.png",
+            src: "assets/music/songs/2025-2026/Jupiter.mp3"
         },
         {
-            title: "song2",
-            artist: "artist2",
-            src: "source2"
+            title: "Mars",
+            artist: "Gustav Holst",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/mars.png",
+            src: "assets/music/songs/2025-2026/Mars.mp3"
+        },
+        {
+            title: "Sleigh Ride",
+            artist: "Leroy Anderson",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/sleigh_ride.png",
+            src: "assets/music/songs/2025-2026/Sleigh Ride.mp3"
+        }
+    ],
+    "Jazz": [
+        {
+            title: "Second Line",
+            artist: "Paul Barbarin",
+            type: "video",
+            src: "assets/music/songs/Jazz/Second_Line_(Joe_Avery's_Blues)-1.mp4"
+        },
+        {
+            title: "Blue Monk",
+            artist: "Thelonious Monk",
+            type: "video",
+            src: "assets/music/songs/Jazz/Blue_Monk_by_Thelonious_Monk-1.mp4"
+        },
+        {
+            title: "In a Mellotone",
+            artist: "Duke Ellington",
+            type: "video",
+            src: "assets/music/songs/Jazz/In_a_Mellotone_by_Duke_Ellington-1.mp4"
+        },
+        {
+            title: "So What",
+            artist: "Miles Davis",
+            type: "video",
+            src: "assets/music/songs/Jazz/So_What_by_Miles_Davis-1.mp4"
+        },
+        {
+            title: "Is That You?",
+            artist: "Bryan Kidd",
+            type: "video",
+            src: "assets/music/songs/Jazz/Is_That_You_by_Bryan_Kidd-1.mp4"
+        },
+        {
+            title: "Change Up",
+            artist: "Carl Strommen",
+            type: "video",
+            src: "assets/music/songs/Jazz/Change_Up_by_Carl_Strommen-1.mp4"
         }
     ]
 }
+const musicArtist = document.getElementById("musicArtist");
 
 let currentQueue = [];
 let currentSongIndex = 0;
@@ -336,17 +421,10 @@ document.querySelectorAll(".playlist").forEach(p => {
         const name = p.dataset.playlist;
         currentQueue = musicData[name];
         currentSongIndex = 0;
-        loadSong(currentQueue[0]);
+        renderDemo(currentQueue[0]);
         renderQueue();
     });
 });
-
-function loadSong(song) {
-    player.src = song.src;
-    titleEl.textContent = song.title;
-    artistEl.textContent = song.artist;
-    player.play();
-}
 
 function renderQueue() {
     const ul = document.getElementById("queueList");
@@ -356,8 +434,85 @@ function renderQueue() {
         li.textContent = song.title;
         li.onclick = () => {
             currentSongIndex = i;
-            loadSong(song);
+            renderDemo(song);
         };
         ul.appendChild(li);
     });
 }
+
+const mediaContainer = document.getElementById("mediaContainer");
+const musicTitle = document.getElementById("musicTitle");
+let currentMedia = null;
+function renderDemo(song) {
+    playPauseBtn.tetxtContent = "⏸";
+    mediaContainer.innerHTML = "";
+    musicTitle.textContent = song.title;
+    musicArtist.textContent = song.artist;
+    if (currentMedia) {
+        currentMedia.pause?.();
+        currentMedia = null;
+    }
+
+    //if theres vid
+    if (song.type === "video") {
+        const video = document.createElement("video");
+        video.src = song.src;
+        video.muted = false;
+        video.volume = 1;
+        video.play().catch(() => {});
+        video.style.width = "100%";
+        mediaContainer.appendChild(video);
+        currentMedia = video;
+        video.play();
+    }
+    //if audio only (mp3)
+    if (song.type === "audio") {
+        const img = document.createElement("img");
+        img.src = song.cover;
+        img.style.width = "220px";
+        img.style.borderRadius = "8px";
+        img.style.marginBottom = "10px";
+        const audio = document.createElement("audio");
+        audio.src = song.src;
+        mediaContainer.appendChild(img);
+        mediaContainer.appendChild(audio);
+        currentMedia = audio;
+        audio.play();
+    }
+    currentMedia.addEventListener("timeupdate", () => {
+        if (!currentMedia.duration) return;
+        progress.value = (currentMedia.currentTime / currentMedia.duration) * 100;
+    });
+}
+
+//progress drag bar
+const progress = document.getElementById("musicProgress");
+progress.addEventListener("input", () => {
+    if (!currentMedia || !currentMedia.duration) return;
+    currentMedia.currentTime = (progress.value / 100) * currentMedia.duration;
+});
+
+//buttons
+const playPauseBtn = document.getElementById("playPause");
+const rewindBtn = document.getElementById("rewind");
+const forwardBtn = document.getElementById("forward");
+playPauseeBtn.addEventListener("click", () => {
+    if (!currentMedia) return;
+    if (currentMedia.paused) {
+        currentMedia.play();
+        playPauseBtn.textContent = "⏸";
+    } else {
+        currentMedia.pause();
+        playPauseBtn.textContent = "▶";
+    }
+});
+
+rewindBtn.addEventListener("click", () => {
+    if (!currentMedia) return;
+    currentMedia.currentTime - Math.max(0, currentMedia.currentTime - 15);
+});
+
+forwardBtn.addEventListener("click", () => {
+    if (!currentMedia) return;
+    currentMedia.currentTime = Math.min(currentMedia.duration, currentMedia.currentTime + 15);
+});
