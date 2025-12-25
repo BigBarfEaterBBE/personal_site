@@ -206,17 +206,17 @@
                         <div class="music-player">
                             <div id="mediaContainer"></div>
                             <div class="music-info">
-                                <h3 id="musicTitle">Select a song</h3>
+                                <h3 id="musicTitle">Select a playlist</h3>
                                 <p id="musicArtist"></p>
                             </div>
-                            <div class="music-controls">
-                                <button>⏮</button>
+                            <div class="music-controls hidden" id="musicControls">
+                                <button id="prev">⏮</button>
                                 <button id="rewind">⏪ 15</button>
                                 <button id="playPause">▶</button>
                                 <button id="forward">15 ⏩</button>
-                                <button>⏭</button>
+                                <button id="next">⏭</button>
                             </div>
-                            <input type="range" id="musicProgress" value="0">
+                            <input type="range" id="musicProgress" class="hidden" value="0">
                         </div>
                         <!--RIGHT:queue-->
                         <div class="music-queue">

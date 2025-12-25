@@ -45,6 +45,9 @@ document.querySelector('.music-icon').addEventListener('click', () => {
     popup.style.display = 'flex';
     currentZIndex++;
     popup.style.zIndex = currentZIndex;
+    document.getElementById("musicControls").classList.remove("hidden");
+    progress.classList.remove("hidden");
+    musicTitle.textContent = ""
 })
 
 /* desktop app window drag */
@@ -444,10 +447,10 @@ const mediaContainer = document.getElementById("mediaContainer");
 const musicTitle = document.getElementById("musicTitle");
 let currentMedia = null;
 function renderDemo(song) {
-    playPauseBtn.tetxtContent = "⏸";
     mediaContainer.innerHTML = "";
     musicTitle.textContent = song.title;
-    musicArtist.textContent = song.artist;
+    musicArtist.textContent = song.artist || "";
+    playPauseBtn.textContent = "▶";
     if (currentMedia) {
         currentMedia.pause?.();
         currentMedia = null;
@@ -457,13 +460,11 @@ function renderDemo(song) {
     if (song.type === "video") {
         const video = document.createElement("video");
         video.src = song.src;
-        video.muted = false;
-        video.volume = 1;
-        video.play().catch(() => {});
         video.style.width = "100%";
+        video.controls = false;
+        video.preload = "metadata";
         mediaContainer.appendChild(video);
         currentMedia = video;
-        video.play();
     }
     //if audio only (mp3)
     if (song.type === "audio") {
@@ -474,11 +475,15 @@ function renderDemo(song) {
         img.style.marginBottom = "10px";
         const audio = document.createElement("audio");
         audio.src = song.src;
+        audio.controls = false;
+        audio.preload = "metadata";
         mediaContainer.appendChild(img);
         mediaContainer.appendChild(audio);
         currentMedia = audio;
-        audio.play();
     }
+    currentMedia.addEventListener("loadedmetadata", () => {
+        progress.value = 0;
+    });
     currentMedia.addEventListener("timeupdate", () => {
         if (!currentMedia.duration) return;
         progress.value = (currentMedia.currentTime / currentMedia.duration) * 100;
@@ -496,10 +501,12 @@ progress.addEventListener("input", () => {
 const playPauseBtn = document.getElementById("playPause");
 const rewindBtn = document.getElementById("rewind");
 const forwardBtn = document.getElementById("forward");
-playPauseeBtn.addEventListener("click", () => {
+playPauseBtn.addEventListener("click", () => {
     if (!currentMedia) return;
     if (currentMedia.paused) {
-        currentMedia.play();
+        currentMedia.play().catch(err => {
+            console.log("playback blocked: ", err);
+        });
         playPauseBtn.textContent = "⏸";
     } else {
         currentMedia.pause();
@@ -509,10 +516,21 @@ playPauseeBtn.addEventListener("click", () => {
 
 rewindBtn.addEventListener("click", () => {
     if (!currentMedia) return;
-    currentMedia.currentTime - Math.max(0, currentMedia.currentTime - 15);
+    currentMedia.currentTime = Math.max(0, currentMedia.currentTime - 15);
 });
 
 forwardBtn.addEventListener("click", () => {
     if (!currentMedia) return;
     currentMedia.currentTime = Math.min(currentMedia.duration, currentMedia.currentTime + 15);
+});
+document.getElementById("prev").addEventListener("click", () => {
+    if (!currentQueue.length) return;
+    currentSongIndex = (currentSongIndex - 1 + currentQueue.length) % currentQueue.length;
+    renderDemo(currentQueue[currentSongIndex]);
+});
+
+document.getElementById("next").addEventListener("click", () => {
+    if (!currentQueue.length) return;
+    currentSongIndex = (currentSongIndex + 1) % currentQueue.length;
+    renderDemo(currentQueue[currentSongIndex]);
 });
