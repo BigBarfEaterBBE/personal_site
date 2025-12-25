@@ -111,45 +111,45 @@ function closeMusic(e) {
 const vscodeFileContent = {
     "Anki Enforcer": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "67",
         learned: "..."
     },
     "Posture Detector": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "89",
         learned: "..."
     },
     "Ticketmaster Trainer": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "10",
         learned: "..."
     },
     "Zeroni Dressup Game": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "11",
         learned: "..."
     },
     "Portfolio Website": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "...",
         learned: "..."
@@ -319,38 +319,38 @@ const musicData = {
         {
             title: "Winter Winds",
             artist: "Randall Standridge",
-            type: "video",
-            src: "assets/music/songs/2024-2025/Winter_Winds_by_Randall_Standridge-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Winter_Winds_by_Randall_Standridge-1.m4a"
         },
         {
             title: "Ancient Voices",
             artist: "Michael Sweeney",
-            type: "video",
-            src: "assets/music/songs/2024-2025/Ancient_Voices_by_Michael_Sweeney-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Ancient_Voices_by_Michael_Sweeney-1.m4a"
         },
         {
             title: "The Tempest",
             artist: "Robert W Smith",
-            type: "video",
-            src: "assets/music/songs/2024-2025/The_Tempest_by_Robert_W_Smith-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) The_Tempest_by_Robert_W_Smith-1.m4a"
         },
         {
             title: "Spitfire",
             artist: "William Owens",
-            type: "video",
-            src: "assets/music/songs/2024-2025/Spitfire_by_William_Owens-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Spitfire_by_William_Owens-1.m4a"
         },
         {
             title: "A Song For Friends",
             artist: "Larry Daehn",
-            type: "video",
-            src: "assets/music/songs/2024-2025/A_Song_For_Friends_by_Larry_Daehn-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) A_Song_For_Friends_by_Larry_Daehn-1.m4a"
         },
         {
             title: "Blue Ridge Reel",
             artist: "Brian Balmages",
-            type: "video",
-            src: "assets/music/songs/2024-2025/Blue_Ridge_Reel_by_Brian_Balmages-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Blue_Ridge_Reel_by_Brian_Balmages-1.m4a"
         }
     ],
     "2025-2026": [
@@ -380,38 +380,38 @@ const musicData = {
         {
             title: "Second Line",
             artist: "Paul Barbarin",
-            type: "video",
-            src: "assets/music/songs/Jazz/Second_Line_(Joe_Avery's_Blues)-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Second_Line_(Joe_Avery's_Blues)-1.m4a"
         },
         {
             title: "Blue Monk",
             artist: "Thelonious Monk",
-            type: "video",
-            src: "assets/music/songs/Jazz/Blue_Monk_by_Thelonious_Monk-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Blue_Monk_by_Thelonious_Monk-1.m4a"
         },
         {
             title: "In a Mellotone",
             artist: "Duke Ellington",
-            type: "video",
-            src: "assets/music/songs/Jazz/In_a_Mellotone_by_Duke_Ellington-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) In_a_Mellotone_by_Duke_Ellington-1.m4a"
         },
         {
             title: "So What",
             artist: "Miles Davis",
-            type: "video",
-            src: "assets/music/songs/Jazz/So_What_by_Miles_Davis-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) So_What_by_Miles_Davis-1.m4a"
         },
         {
             title: "Is That You?",
             artist: "Bryan Kidd",
-            type: "video",
-            src: "assets/music/songs/Jazz/Is_That_You_by_Bryan_Kidd-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Is_That_You_by_Bryan_Kidd-1.m4a"
         },
         {
             title: "Change Up",
             artist: "Carl Strommen",
-            type: "video",
-            src: "assets/music/songs/Jazz/Change_Up_by_Carl_Strommen-1.mp4"
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Change_Up_by_Carl_Strommen-1.m4a"
         }
     ]
 }
@@ -457,14 +457,14 @@ function renderDemo(song) {
     }
 
     //if theres vid
-    if (song.type === "video") {
-        const video = document.createElement("video");
-        video.src = song.src;
-        video.style.width = "100%";
-        video.controls = false;
-        video.preload = "metadata";
-        mediaContainer.appendChild(video);
-        currentMedia = video;
+    if (song.type === "audio") {
+        const audio = document.createElement("audio");
+        audio.src = song.src;
+        audio.style.width = "100%";
+        audio.controls = false;
+        audio.preload = "metadata";
+        mediaContainer.appendChild(audio);
+        currentMedia = audio;
     }
     //if audio only (mp3)
     if (song.type === "audio") {
