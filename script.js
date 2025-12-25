@@ -39,6 +39,15 @@ document.querySelector('.vscode-icon').addEventListener('click', () => {
     popup.style.display = 'flex';
     currentZIndex++;
     popup.style.zIndex = currentZIndex;
+});
+document.querySelector('.music-icon').addEventListener('click', () => {
+    const popup = document.getElementById('musicWindow');
+    popup.style.display = 'flex';
+    currentZIndex++;
+    popup.style.zIndex = currentZIndex;
+    document.getElementById("musicControls").classList.remove("hidden");
+    progress.classList.remove("hidden");
+    musicTitle.textContent = ""
 })
 
 /* desktop app window drag */
@@ -93,50 +102,54 @@ function closeVSCode(e) {
     e.stopPropagation();
     document.getElementById('vscodeWindow').style.display = 'none';
 }
+function closeMusic(e) {
+    e.stopPropagation();
+    document.getElementById("musicWindow").style.display = 'none';
+}
 
 //vscode file content
 const vscodeFileContent = {
     "Anki Enforcer": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "67",
         learned: "..."
     },
     "Posture Detector": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "89",
         learned: "..."
     },
     "Ticketmaster Trainer": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "10",
         learned: "..."
     },
     "Zeroni Dressup Game": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "11",
         learned: "..."
     },
     "Portfolio Website": {
         demo: `
-            <video controls width="90%">
-                <source src="placeholder" type="video/mp4">
-            </video>
+            <audio controls width="90%">
+                <source src="placeholder" type="audio/m4a">
+            </audio>
         `,
         description: "...",
         learned: "..."
@@ -275,4 +288,249 @@ document.querySelector('.photo-nav-btn.prev').addEventListener('click', () => {
                 
 previewClose.addEventListener('click', () => {
     previewOverlay.style.display = 'none';
+});
+
+//music app stuff
+const musicData = {
+    "2023-2024": [
+        {
+            title: "Ember Skies",
+            artist: "Kevin Day",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/ember_skies.png",
+            src: "assets/music/songs/2023-2024/Ember Skies_by_Kevin_Day.mp3"
+        },
+        {
+            title: "Flying High",
+            artist: "William Owens",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/flying_high.png",
+            src: "assets/music/songs/2023-2024/Flying Highk_by_William_Owens.mp3"
+        },
+        {
+            title: "Joshua",
+            artist: "Andrew Balent",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/joshua.png",
+            src: "assets/music/songs/2023-2024/Joshua_arr_Andrew_Balent.mp3"
+        }
+    ],
+    "2024-2025": [
+        {
+            title: "Winter Winds",
+            artist: "Randall Standridge",
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Winter_Winds_by_Randall_Standridge-1.m4a"
+        },
+        {
+            title: "Ancient Voices",
+            artist: "Michael Sweeney",
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Ancient_Voices_by_Michael_Sweeney-1.m4a"
+        },
+        {
+            title: "The Tempest",
+            artist: "Robert W Smith",
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) The_Tempest_by_Robert_W_Smith-1.m4a"
+        },
+        {
+            title: "Spitfire",
+            artist: "William Owens",
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Spitfire_by_William_Owens-1.m4a"
+        },
+        {
+            title: "A Song For Friends",
+            artist: "Larry Daehn",
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) A_Song_For_Friends_by_Larry_Daehn-1.m4a"
+        },
+        {
+            title: "Blue Ridge Reel",
+            artist: "Brian Balmages",
+            type: "audio",
+            src: "assets/music/songs/2024-2025/(Audio) Blue_Ridge_Reel_by_Brian_Balmages-1.m4a"
+        }
+    ],
+    "2025-2026": [
+        {
+            title: "Jupiter",
+            artist: "Gustav Holst",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/jupiter.png",
+            src: "assets/music/songs/2025-2026/Jupiter.mp3"
+        },
+        {
+            title: "Mars",
+            artist: "Gustav Holst",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/mars.png",
+            src: "assets/music/songs/2025-2026/Mars.mp3"
+        },
+        {
+            title: "Sleigh Ride",
+            artist: "Leroy Anderson",
+            type: "audio",
+            cover: "assets/music/songs/song_covers/sleigh_ride.png",
+            src: "assets/music/songs/2025-2026/Sleigh Ride.mp3"
+        }
+    ],
+    "Jazz": [
+        {
+            title: "Second Line",
+            artist: "Paul Barbarin",
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Second_Line_(Joe_Avery's_Blues)-1.m4a"
+        },
+        {
+            title: "Blue Monk",
+            artist: "Thelonious Monk",
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Blue_Monk_by_Thelonious_Monk-1.m4a"
+        },
+        {
+            title: "In a Mellotone",
+            artist: "Duke Ellington",
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) In_a_Mellotone_by_Duke_Ellington-1.m4a"
+        },
+        {
+            title: "So What",
+            artist: "Miles Davis",
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) So_What_by_Miles_Davis-1.m4a"
+        },
+        {
+            title: "Is That You?",
+            artist: "Bryan Kidd",
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Is_That_You_by_Bryan_Kidd-1.m4a"
+        },
+        {
+            title: "Change Up",
+            artist: "Carl Strommen",
+            type: "audio",
+            src: "assets/music/songs/Jazz/(Audio) Change_Up_by_Carl_Strommen-1.m4a"
+        }
+    ]
+}
+const musicArtist = document.getElementById("musicArtist");
+
+let currentQueue = [];
+let currentSongIndex = 0;
+document.querySelectorAll(".playlist").forEach(p => {
+    p.addEventListener("click", () => {
+        const name = p.dataset.playlist;
+        currentQueue = musicData[name];
+        currentSongIndex = 0;
+        renderDemo(currentQueue[0]);
+        renderQueue();
+    });
+});
+
+function renderQueue() {
+    const ul = document.getElementById("queueList");
+    ul.innerHTML = "";
+    currentQueue.forEach((song, i) => {
+        const li = document.createElement("li");
+        li.textContent = song.title;
+        li.onclick = () => {
+            currentSongIndex = i;
+            renderDemo(song);
+        };
+        ul.appendChild(li);
+    });
+}
+
+const mediaContainer = document.getElementById("mediaContainer");
+const musicTitle = document.getElementById("musicTitle");
+let currentMedia = null;
+function renderDemo(song) {
+    mediaContainer.innerHTML = "";
+    musicTitle.textContent = song.title;
+    musicArtist.textContent = song.artist || "";
+    playPauseBtn.textContent = "▶";
+    if (currentMedia) {
+        currentMedia.pause?.();
+        currentMedia = null;
+    }
+
+    //if theres vid
+    if (song.type === "audio") {
+        const audio = document.createElement("audio");
+        audio.src = song.src;
+        audio.style.width = "100%";
+        audio.controls = false;
+        audio.preload = "metadata";
+        mediaContainer.appendChild(audio);
+        currentMedia = audio;
+    }
+    //if audio only (mp3)
+    if (song.type === "audio") {
+        const img = document.createElement("img");
+        img.src = song.cover;
+        img.style.width = "220px";
+        img.style.borderRadius = "8px";
+        img.style.marginBottom = "10px";
+        const audio = document.createElement("audio");
+        audio.src = song.src;
+        audio.controls = false;
+        audio.preload = "metadata";
+        mediaContainer.appendChild(img);
+        mediaContainer.appendChild(audio);
+        currentMedia = audio;
+    }
+    currentMedia.addEventListener("loadedmetadata", () => {
+        progress.value = 0;
+    });
+    currentMedia.addEventListener("timeupdate", () => {
+        if (!currentMedia.duration) return;
+        progress.value = (currentMedia.currentTime / currentMedia.duration) * 100;
+    });
+}
+
+//progress drag bar
+const progress = document.getElementById("musicProgress");
+progress.addEventListener("input", () => {
+    if (!currentMedia || !currentMedia.duration) return;
+    currentMedia.currentTime = (progress.value / 100) * currentMedia.duration;
+});
+
+//buttons
+const playPauseBtn = document.getElementById("playPause");
+const rewindBtn = document.getElementById("rewind");
+const forwardBtn = document.getElementById("forward");
+playPauseBtn.addEventListener("click", () => {
+    if (!currentMedia) return;
+    if (currentMedia.paused) {
+        currentMedia.play().catch(err => {
+            console.log("playback blocked: ", err);
+        });
+        playPauseBtn.textContent = "⏸";
+    } else {
+        currentMedia.pause();
+        playPauseBtn.textContent = "▶";
+    }
+});
+
+rewindBtn.addEventListener("click", () => {
+    if (!currentMedia) return;
+    currentMedia.currentTime = Math.max(0, currentMedia.currentTime - 15);
+});
+
+forwardBtn.addEventListener("click", () => {
+    if (!currentMedia) return;
+    currentMedia.currentTime = Math.min(currentMedia.duration, currentMedia.currentTime + 15);
+});
+document.getElementById("prev").addEventListener("click", () => {
+    if (!currentQueue.length) return;
+    currentSongIndex = (currentSongIndex - 1 + currentQueue.length) % currentQueue.length;
+    renderDemo(currentQueue[currentSongIndex]);
+});
+
+document.getElementById("next").addEventListener("click", () => {
+    if (!currentQueue.length) return;
+    currentSongIndex = (currentSongIndex + 1) % currentQueue.length;
+    renderDemo(currentQueue[currentSongIndex]);
 });
