@@ -45,9 +45,6 @@ document.querySelector('.music-icon').addEventListener('click', () => {
     popup.style.display = 'flex';
     currentZIndex++;
     popup.style.zIndex = currentZIndex;
-    document.getElementById("musicControls").classList.remove("hidden");
-    progress.classList.remove("hidden");
-    musicTitle.textContent = ""
 })
 
 /* desktop app window drag */
@@ -104,7 +101,12 @@ function closeVSCode(e) {
 }
 function closeMusic(e) {
     e.stopPropagation();
-    document.getElementById("musicWindow").style.display = 'none';
+    const musicWindow = document.getElementById("musicWindow");
+    musicWindow.style.display = "none";
+    if (currentMedia) {
+        currentMedia.pause();
+        currentMedia.currentTime = 0; //reset music progress
+    }
 }
 
 //vscode file content
@@ -320,36 +322,42 @@ const musicData = {
             title: "Winter Winds",
             artist: "Randall Standridge",
             type: "audio",
+            cover: "assets/music/songs/song_covers/winter_winds.png",
             src: "assets/music/songs/2024-2025/(Audio) Winter_Winds_by_Randall_Standridge-1.mp3"
         },
         {
             title: "Ancient Voices",
             artist: "Michael Sweeney",
             type: "audio",
+            cover: "assets/music/songs/song_covers/ancient_voices.png",
             src: "assets/music/songs/2024-2025/(Audio) Ancient_Voices_by_Michael_Sweeney-1.mp3"
         },
         {
             title: "The Tempest",
             artist: "Robert W Smith",
             type: "audio",
+            cover: "assets/music/songs/song_covers/the_tempest.png",
             src: "assets/music/songs/2024-2025/(Audio) The_Tempest_by_Robert_W_Smith-1.mp3"
         },
         {
             title: "Spitfire",
             artist: "William Owens",
             type: "audio",
+            cover: "assets/music/songs/song_covers/spitfire.png",
             src: "assets/music/songs/2024-2025/(Audio) Spitfire_by_William_Owens-1.mp3"
         },
         {
             title: "A Song For Friends",
             artist: "Larry Daehn",
             type: "audio",
+            cover: "assets/music/songs/song_covers/a_song_for_friends.png",
             src: "assets/music/songs/2024-2025/(Audio) A_Song_For_Friends_by_Larry_Daehn-1.mp3"
         },
         {
             title: "Blue Ridge Reel",
             artist: "Brian Balmages",
             type: "audio",
+            cover: "assets/music/songs/song_covers/blue_ridge_reel.png",
             src: "assets/music/songs/2024-2025/(Audio) Blue_Ridge_Reel_by_Brian_Balmages-1.mp3"
         }
     ],
@@ -381,30 +389,35 @@ const musicData = {
             title: "Second Line",
             artist: "Paul Barbarin",
             type: "audio",
+            cover: "assets/music/songs/song_covers/second_line.png",
             src: "assets/music/songs/Jazz/(Audio) Second_Line_(Joe_Avery's_Blues)-1.mp3"
         },
         {
             title: "Blue Monk",
             artist: "Thelonious Monk",
             type: "audio",
+            cover: "assets/music/songs/song_covers/blue_monk.png",
             src: "assets/music/songs/Jazz/(Audio) Blue_Monk_by_Thelonious_Monk-1.mp3"
         },
         {
             title: "In a Mellotone",
             artist: "Duke Ellington",
             type: "audio",
+            cover: "assets/music/songs/song_covers/mellotone.png",
             src: "assets/music/songs/Jazz/(Audio) In_a_Mellotone_by_Duke_Ellington-1.mp3"
         },
         {
             title: "So What",
             artist: "Miles Davis",
             type: "audio",
+            cover: "assets/music/songs/song_covers/so_what.png",
             src: "assets/music/songs/Jazz/(Audio) So_What_by_Miles_Davis-1.mp3"
         },
         {
             title: "Is That You?",
             artist: "Bryan Kidd",
             type: "audio",
+            cover: "assets/music/songs/song_covers/is_that_you.png",
             src: "assets/music/songs/Jazz/(Audio) Is_That_You_by_Bryan_Kidd-1.mp3"
         },
         {
@@ -424,6 +437,8 @@ document.querySelectorAll(".playlist").forEach(p => {
         const name = p.dataset.playlist;
         currentQueue = musicData[name];
         currentSongIndex = 0;
+        document.getElementById("musicControls").classList.remove("hidden");
+        progress.classList.remove("hidden");
         renderDemo(currentQueue[0]);
         renderQueue();
     });
