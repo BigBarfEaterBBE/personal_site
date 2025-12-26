@@ -112,7 +112,7 @@ const vscodeFileContent = {
     "Anki Enforcer": {
         demo: `
             <audio controls width="90%">
-                <source src="placeholder" type="audio/m4a">
+                <source src="placeholder" type="audio/mp3">
             </audio>
         `,
         description: "67",
@@ -121,7 +121,7 @@ const vscodeFileContent = {
     "Posture Detector": {
         demo: `
             <audio controls width="90%">
-                <source src="placeholder" type="audio/m4a">
+                <source src="placeholder" type="audio/mp3">
             </audio>
         `,
         description: "89",
@@ -130,7 +130,7 @@ const vscodeFileContent = {
     "Ticketmaster Trainer": {
         demo: `
             <audio controls width="90%">
-                <source src="placeholder" type="audio/m4a">
+                <source src="placeholder" type="audio/mp3">
             </audio>
         `,
         description: "10",
@@ -139,7 +139,7 @@ const vscodeFileContent = {
     "Zeroni Dressup Game": {
         demo: `
             <audio controls width="90%">
-                <source src="placeholder" type="audio/m4a">
+                <source src="placeholder" type="audio/mp3">
             </audio>
         `,
         description: "11",
@@ -148,7 +148,7 @@ const vscodeFileContent = {
     "Portfolio Website": {
         demo: `
             <audio controls width="90%">
-                <source src="placeholder" type="audio/m4a">
+                <source src="placeholder" type="audio/mp3">
             </audio>
         `,
         description: "...",
@@ -320,37 +320,37 @@ const musicData = {
             title: "Winter Winds",
             artist: "Randall Standridge",
             type: "audio",
-            src: "assets/music/songs/2024-2025/(Audio) Winter_Winds_by_Randall_Standridge-1.m4a"
+            src: "assets/music/songs/2024-2025/(Audio) Winter_Winds_by_Randall_Standridge-1.mp3"
         },
         {
             title: "Ancient Voices",
             artist: "Michael Sweeney",
             type: "audio",
-            src: "assets/music/songs/2024-2025/(Audio) Ancient_Voices_by_Michael_Sweeney-1.m4a"
+            src: "assets/music/songs/2024-2025/(Audio) Ancient_Voices_by_Michael_Sweeney-1.mp3"
         },
         {
             title: "The Tempest",
             artist: "Robert W Smith",
             type: "audio",
-            src: "assets/music/songs/2024-2025/(Audio) The_Tempest_by_Robert_W_Smith-1.m4a"
+            src: "assets/music/songs/2024-2025/(Audio) The_Tempest_by_Robert_W_Smith-1.mp3"
         },
         {
             title: "Spitfire",
             artist: "William Owens",
             type: "audio",
-            src: "assets/music/songs/2024-2025/(Audio) Spitfire_by_William_Owens-1.m4a"
+            src: "assets/music/songs/2024-2025/(Audio) Spitfire_by_William_Owens-1.mp3"
         },
         {
             title: "A Song For Friends",
             artist: "Larry Daehn",
             type: "audio",
-            src: "assets/music/songs/2024-2025/(Audio) A_Song_For_Friends_by_Larry_Daehn-1.m4a"
+            src: "assets/music/songs/2024-2025/(Audio) A_Song_For_Friends_by_Larry_Daehn-1.mp3"
         },
         {
             title: "Blue Ridge Reel",
             artist: "Brian Balmages",
             type: "audio",
-            src: "assets/music/songs/2024-2025/(Audio) Blue_Ridge_Reel_by_Brian_Balmages-1.m4a"
+            src: "assets/music/songs/2024-2025/(Audio) Blue_Ridge_Reel_by_Brian_Balmages-1.mp3"
         }
     ],
     "2025-2026": [
@@ -381,37 +381,37 @@ const musicData = {
             title: "Second Line",
             artist: "Paul Barbarin",
             type: "audio",
-            src: "assets/music/songs/Jazz/(Audio) Second_Line_(Joe_Avery's_Blues)-1.m4a"
+            src: "assets/music/songs/Jazz/(Audio) Second_Line_(Joe_Avery's_Blues)-1.mp3"
         },
         {
             title: "Blue Monk",
             artist: "Thelonious Monk",
             type: "audio",
-            src: "assets/music/songs/Jazz/(Audio) Blue_Monk_by_Thelonious_Monk-1.m4a"
+            src: "assets/music/songs/Jazz/(Audio) Blue_Monk_by_Thelonious_Monk-1.mp3"
         },
         {
             title: "In a Mellotone",
             artist: "Duke Ellington",
             type: "audio",
-            src: "assets/music/songs/Jazz/(Audio) In_a_Mellotone_by_Duke_Ellington-1.m4a"
+            src: "assets/music/songs/Jazz/(Audio) In_a_Mellotone_by_Duke_Ellington-1.mp3"
         },
         {
             title: "So What",
             artist: "Miles Davis",
             type: "audio",
-            src: "assets/music/songs/Jazz/(Audio) So_What_by_Miles_Davis-1.m4a"
+            src: "assets/music/songs/Jazz/(Audio) So_What_by_Miles_Davis-1.mp3"
         },
         {
             title: "Is That You?",
             artist: "Bryan Kidd",
             type: "audio",
-            src: "assets/music/songs/Jazz/(Audio) Is_That_You_by_Bryan_Kidd-1.m4a"
+            src: "assets/music/songs/Jazz/(Audio) Is_That_You_by_Bryan_Kidd-1.mp3"
         },
         {
             title: "Change Up",
             artist: "Carl Strommen",
             type: "audio",
-            src: "assets/music/songs/Jazz/(Audio) Change_Up_by_Carl_Strommen-1.m4a"
+            src: "assets/music/songs/Jazz/(Audio) Change_Up_by_Carl_Strommen-1.mp3"
         }
     ]
 }
