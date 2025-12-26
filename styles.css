@@ -688,6 +688,67 @@ button:hover {
     display: none;
 }
 
+/* ART / MS PAINT APP */
+.art-popup {
+    width: 900px;
+    height: 600px;
+    background: #c0c0c0;
+    border: 2px solid #000;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.art-header {
+    background: #000080;
+    color: white;
+    padding: 6px 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    cursor: move;
+}
+
+.art-toolbar {
+    background: #d4d0c8;
+    padding: 6px;
+    display: flex;
+    gap: 8px;
+    border-bottom: 2ppx solid #808080;
+}
+
+.art-toolbar button {
+    background: #e0e0e0;
+    border: 1px solid #808080;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.art-toolbar button:hover {
+    background: #fff
+}
+
+.art-canvas-wrapper {
+    position: relative;
+    flex: 1;
+    background: #fff;
+    overflow: hidden;
+}
+
+#artImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#scratchCanvas {
+    position: absolute;
+    inset: 0;
+    cursor: crosshair;
+}
+
 /* GENERAL */
 .close-button {
     background: none;

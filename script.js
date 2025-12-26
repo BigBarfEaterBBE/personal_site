@@ -45,7 +45,14 @@ document.querySelector('.music-icon').addEventListener('click', () => {
     popup.style.display = 'flex';
     currentZIndex++;
     popup.style.zIndex = currentZIndex;
-})
+});
+document.querySelector('.art-icon').addEventListener('click', () => {
+    const popup = document.getElementById('artWindow');
+    popup.style.display = 'flex';
+    currentZIndex++;
+    popup.style.zIndex = currentZIndex;
+    resizeArtCanvas();
+});
 
 /* desktop app window drag */
 document.querySelectorAll('.app-popup').forEach(popup => {
@@ -107,6 +114,10 @@ function closeMusic(e) {
         currentMedia.pause();
         currentMedia.currentTime = 0; //reset music progress
     }
+}
+function closeArt(e) {
+    e.stopPropagation();
+    document.getElementById('artWindow').style.display = 'none';
 }
 
 //vscode file content
@@ -548,4 +559,45 @@ document.getElementById("next").addEventListener("click", () => {
     if (!currentQueue.length) return;
     currentSongIndex = (currentSongIndex + 1) % currentQueue.length;
     renderDemo(currentQueue[currentSongIndex]);
+});
+
+//art app
+const canvas = document.getElementById("scratchCanvas");
+const ctx = canvas.getContext("2d");
+let isDrawing = false;
+let brushSize = 20;
+function resizeArtCanvas() {
+    const wrapper = document.querySelector(".art-canvas-wrapper");
+    canvas.width = wrapper.clientWidth;
+    canvas.height = wrapper.clientHeight;
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+}
+
+//art toolbar
+document.querySelectorAll(".art-toolbar button[data-size]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        brushSize = Number(btn.dataset.size);
+    });
+});
+function resetArt() {
+    resizeArtCanvas();
+}
+
+
+//art mouse events
+canvas.addEventListener("mousedown", () => isDrawing = true);
+canvas.addEventListener("mouseup", () => isDrawing = false);
+canvas.addEventListener("mouseleave", () => isDrawing = false);
+
+canvas.addEventListener("mousemove", (e) => {
+    if (!isDrawing) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x,y,brushSize,0,Math.PI * 2);
+    ctx.fill();
 });

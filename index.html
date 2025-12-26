@@ -17,9 +17,9 @@
                 <img src="assets\desktop\Spotify Logo.jpg" alt="App 1">
                 <p>Music</p>
             </div>
-            <div class="icon">
-                <img src="assets\desktop\News.jpg" alt="App 1">
-                <p>News</p>
+            <div class="icon art-icon">
+                <img src="assets\desktop\paint_icon.png" alt="App 1">
+                <p>Art</p>
             </div>
             <div class="icon photo-icon">
                 <img src="assets\desktop\File.png" alt="App 1">
@@ -223,6 +223,24 @@
                             <h4>Up Next:</h4>
                             <ul id="queueList"></ul>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="icon-overlay" id="artWindow">
+                <div class="art-popup app-popup">
+                    <div class="art-header">
+                        <span>Paint</span>
+                        <button class="close-button" onclick="closeArt(event)">✖</button>
+                    </div>
+                    <div class="art-toolbar">
+                        <button data-size="10">🖌 Small</button>
+                        <button data-size="20">🖌 Medium</button>
+                        <button data-size="35">🖌 Large</button>
+                        <button onclick="resetArt()">Reset</button>
+                    </div>
+                    <div class="art-canvas-wrapper">
+                        <img id="artImage" src="assets\random\clover_icon.png" />
+                        <canvas id="scratchCanvas"></canvas>
                     </div>
                 </div>
             </div>
