@@ -233,14 +233,17 @@
                         <button class="close-button" onclick="closeArt(event)">✖</button>
                     </div>
                     <div class="art-toolbar">
-                        <button data-size="10">🖌 Small</button>
-                        <button data-size="20">🖌 Medium</button>
-                        <button data-size="35">🖌 Large</button>
+                        <button data-size="50">🖌 Small</button>
+                        <button data-size="100">🖌 Medium</button>
+                        <button data-size="200">🖌 Large</button>
                         <button onclick="resetArt()">Reset</button>
                     </div>
-                    <div class="art-canvas-wrapper">
-                        <img id="artImage" src="assets\random\clover_icon.png" />
-                        <canvas id="scratchCanvas"></canvas>
+                    <div class="art-stage">
+                        <div class="art-canvas-wrapper">
+                            <img id="artImage" src="image (1).png" />
+                            <canvas id="scratchCanvas"></canvas>
+                            <div id="brushCursor"></div>
+                        </div>
                     </div>
                 </div>
             </div>

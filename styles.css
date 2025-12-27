@@ -730,23 +730,54 @@ button:hover {
 
 .art-canvas-wrapper {
     position: relative;
-    flex: 1;
-    background: #fff;
-    overflow: hidden;
+    width: auto;
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #artImage {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
     object-fit: contain;
+}
+
+#artCanvas {
+    position:absolute;
+    top: 0;
+    left: 0;
+    cursor: none;
 }
 
 #scratchCanvas {
     position: absolute;
-    inset: 0;
-    cursor: crosshair;
+    top: 0;
+    left: 0;
+    cursor: none;
+}
+
+.art-stage {
+    flex: 1;
+    background: #bcbcbc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#brushCursor {
+    position: absolute;
+    z-index: 10;
+    display: none;
+    border: 1.5px solid rgba(0,0,0,0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
 }
 
 /* GENERAL */

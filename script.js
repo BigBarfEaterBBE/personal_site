@@ -564,15 +564,24 @@ document.getElementById("next").addEventListener("click", () => {
 //art app
 const canvas = document.getElementById("scratchCanvas");
 const ctx = canvas.getContext("2d");
+const img = document.getElementById("artImage");
 let isDrawing = false;
 let brushSize = 20;
-function resizeArtCanvas() {
-    const wrapper = document.querySelector(".art-canvas-wrapper");
-    canvas.width = wrapper.clientWidth;
-    canvas.height = wrapper.clientHeight;
+let canvasScale = 1;
+
+img.onload = () => {
+    const rect = img.getBoundingClientRect();
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    canvas.style.width = rect.width + "px";
+    canvas.style.height = rect.height + "px";
+    canvasScale = rect.width / canvas.width;
     ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+};
+function resizeArtCanvas() {
+    if (img.complete) img.onload();
 }
 
 //art toolbar
@@ -594,10 +603,29 @@ canvas.addEventListener("mouseleave", () => isDrawing = false);
 canvas.addEventListener("mousemove", (e) => {
     if (!isDrawing) return;
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+    const y = (e.clientY - rect.top) * (canvas.height / rect.height);
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
     ctx.arc(x,y,brushSize,0,Math.PI * 2);
     ctx.fill();
+});
+
+//brush preview
+const brushCursor = document.getElementById("brushCursor");
+canvas.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    brushCursor.style.left = (e.clientX - rect.left) + "px";
+    brushCursor.style.top = (e.clientY - rect.top) + "px";
+
+    //scale cursor
+    const screenRadius = brushSize * canvasScale;
+    brushCursor.style.width = screenRadius * 2 + "px";
+    brushCursor.style.height = screenRadius * 2 + "px";
+});
+canvas.addEventListener("mouseenter", () => {
+    brushCursor.style.display = "block";
+});
+canvas.addEventListener ("mouseleave", () => {
+    brushCursor.style.display = "none";
 });
