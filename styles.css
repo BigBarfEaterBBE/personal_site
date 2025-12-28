@@ -780,6 +780,27 @@ button:hover {
     transform: translate(-50%, -50%);
 }
 
+.art-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    color: rgba(0,0,0,0.6);
+    cursor: pointer;
+    user-select: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    z-index: 10;
+}
+
+.art-nav.left { left: 12px; }
+.art-nav.right { right: 12px; }
+.art-nav.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /* GENERAL */
 .close-button {
     background: none;

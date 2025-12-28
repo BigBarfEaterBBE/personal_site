@@ -51,7 +51,7 @@ document.querySelector('.art-icon').addEventListener('click', () => {
     popup.style.display = 'flex';
     currentZIndex++;
     popup.style.zIndex = currentZIndex;
-    resizeArtCanvas();
+    loadArtwork(currentArtIndex);
 });
 
 /* desktop app window drag */
@@ -562,26 +562,81 @@ document.getElementById("next").addEventListener("click", () => {
 });
 
 //art app
+const artworks = [
+    "assets/random/clover_icon.png",
+    "image (1).png",
+    "assets/random/f1car_icon.png"
+];
+let currentArtIndex = 0;
+const artProgress = {}; // store img data
 const canvas = document.getElementById("scratchCanvas");
 const ctx = canvas.getContext("2d");
 const img = document.getElementById("artImage");
+const artInitialized = {};
 let isDrawing = false;
 let brushSize = 20;
 let canvasScale = 1;
+const prevArrow = document.getElementById("artPrev");
+const nextArrow = document.getElementById("artNext");
 
-img.onload = () => {
-    const rect = img.getBoundingClientRect();
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    canvas.style.width = rect.width + "px";
-    canvas.style.height = rect.height + "px";
-    canvasScale = rect.width / canvas.width;
-    ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-};
-function resizeArtCanvas() {
-    if (img.complete) img.onload();
+function updateArrows(force = false) {
+    const revealedEnough = force || getRevealPercent() > 0.8;
+    prevArrow.classList.toggle("show", revealedEnough && currentArtIndex > 0);
+    nextArrow.classList.toggle("show", revealedEnough && currentArtIndex < artworks.length - 1);
+}
+
+nextArrow.addEventListener("click", () => {
+    if (currentArtIndex < artworks.length - 1) {
+        loadArtwork(currentArtIndex + 1);
+    }
+});
+
+prevArrow.addEventListener("click", () => {
+    if (currentArtIndex > 0) {
+        loadArtwork(currentArtIndex - 1);
+    }
+});
+
+function loadArtwork(index) {
+    //save current progress only if art was init
+    if (artInitialized[currentArtIndex]) {
+        artProgress[currentArtIndex] = ctx.getImageData(0,0,canvas.width, canvas.height);
+    }
+    currentArtIndex = index;
+    prevArrow.classList.remove("show");
+    nextArrow.classList.remove("show");
+
+    img.src = artworks[currentArtIndex];
+    
+    img.onload = () => {
+        const rect = img.getBoundingClientRect();
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.style.width = rect.width + "px";
+        canvas.style.height = rect.height + "px";
+        canvasScale = rect.width / canvas.width;
+        ctx.globalCompositeOperation = "source-over";
+
+        //restore progress if existing
+        if (artProgress[currentArtIndex]) {
+            ctx.putImageData(artProgress[currentArtIndex], 0, 0);
+        } else {
+            //first time
+            ctx.fillStyle = "white";
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+            artInitialized[currentArtIndex] = true;
+        }
+        updateArrows();
+    };
+}
+
+function getRevealPercent() {
+    const imageData = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let transparent = 0;
+    for (let i = 3; i< imageData.length; i += 4) {
+        if (imageData[i] === 0) transparent++;
+    }
+    return transparent / (imageData.length / 4);
 }
 
 //art toolbar
@@ -609,6 +664,11 @@ canvas.addEventListener("mousemove", (e) => {
     ctx.beginPath();
     ctx.arc(x,y,brushSize,0,Math.PI * 2);
     ctx.fill();
+
+    //check reveal progress
+    if (getRevealPercent() > 0.8) {
+        updateArrows(true);
+    }
 });
 
 //brush preview
