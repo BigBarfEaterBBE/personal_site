@@ -63,7 +63,7 @@ button:hover {
     display: grid;
     grid-template-rows: repeat(3, 150px);
     grid-auto-flow: column;
-    grid-gap: 30px;
+    grid-gap: 20px;
     justify-content: start;
     padding-left: 50px;
     align-items: start;
@@ -301,8 +301,8 @@ button:hover {
 
 /* FITNESS APP */
 .fitness-popup {
-    width: 900px;
-    height: 600px;
+    width: 90%;
+    height: 90%;
     background: #111;
     border-radius: 12px;
     overflow: hidden;
@@ -411,8 +411,8 @@ button:hover {
 
 /* VSCODE */
 .vscode-popup {
-    width: 1100px;
-    height: 700px;
+    width: 90%;
+    height: 90%;
     background: #1e1e1e;
     border-radius: 8px;
     display: flex;
@@ -570,8 +570,8 @@ button:hover {
 
 /* MUSIC APP */
 .music-popup {
-    width: 1100px;
-    height: 700px;
+    width: 90%;
+    height: 90%;
     background: #121212;
     color: white;
     display: flex;
@@ -690,8 +690,8 @@ button:hover {
 
 /* ART / MS PAINT APP */
 .art-popup {
-    width: 900px;
-    height: 600px;
+    width: 90%;
+    height: 90%;
     background: #c0c0c0;
     border: 2px solid #000;
     display: flex;
