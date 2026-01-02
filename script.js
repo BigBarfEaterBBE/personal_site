@@ -255,20 +255,20 @@ const previewText = document.querySelector('.preview-text');
 const previewClose = document.querySelector('.preview-close');
 const folderData = {
     family: {
-        images: ['assets/photos/family1.jpg', 'assets/photos/family2.jpg', 'assets/photos/family3.jpg'],
-        text: 'Me and My Dad'
+        images: ['assets/photos/family1.jpg', 'assets/photos/family2.jpg'],
+        text: 'I love spending time with my dad, grandma, and my dog Fudgie. We usually go hiking, play board games, or cook good food together.'
     },
     debate: {
         images: ['assets/photos/debate1.jpg', 'assets/photos/debate2.jpg', 'assets/photos/debate3.jpg'],
-        text: 'St. Nicks Speech and Debate 12/13/2025'
+        text: 'I have been competing on the Boston Latin School speech and debate team for the past three years. I have also finaled at the local and state level along with competing at the national level.'
     },
     hobbies: {
             images: ['assets/photos/hobbies1.jpg', 'assets/photos/hobbies2.jpg', 'assets/photos/hobbies3.jpg'],
-            text: 'I love eating good food'
+            text: 'Some of my hobbiese are fixing cars with my dad, home improvement, or eating good food (not sure if that is a hobbie). Having things to do beside school in my downtime really help me relax and recharge.'
     },
     travel: {
         images: ['assets/photos/travel1.jpg', 'assets/photos/travel2.jpg', 'assets/photos/travel3.jpg'],
-        text: 'My Japan Trip April 2025'
+        text: 'I enjoy traveling around the world. Getting the opportunity to travel, really immerses me within the culture and atmosphere of other countries, whether it be historical landmarks, culturally important food, or just walking walking around the city. Traveling has really expanded my world view and awareness of other nations beside the U.S.'
     }
 };
 let currentPhotos = [];
@@ -441,6 +441,7 @@ const musicData = {
 }
 const musicArtist = document.getElementById("musicArtist");
 
+let cuurrentMedia = null;
 let currentQueue = [];
 let currentSongIndex = 0;
 document.querySelectorAll(".playlist").forEach(p => {
@@ -474,45 +475,40 @@ const musicTitle = document.getElementById("musicTitle");
 let currentMedia = null;
 function renderDemo(song) {
     mediaContainer.innerHTML = "";
+
     musicTitle.textContent = song.title;
     musicArtist.textContent = song.artist || "";
-    playPauseBtn.textContent = "▶";
     if (currentMedia) {
-        currentMedia.pause?.();
+        currentMedia.pause();
+        currentMedia.currentTime = 0;
         currentMedia = null;
     }
-
-    //if theres vid
-    if (song.type === "audio") {
-        const audio = document.createElement("audio");
-        audio.src = song.src;
-        audio.style.width = "100%";
-        audio.controls = false;
-        audio.preload = "metadata";
-        mediaContainer.appendChild(audio);
-        currentMedia = audio;
-    }
-    //if audio only (mp3)
-    if (song.type === "audio") {
+    if (song.cover) {
         const img = document.createElement("img");
         img.src = song.cover;
         img.style.width = "220px";
         img.style.borderRadius = "8px";
         img.style.marginBottom = "10px";
-        const audio = document.createElement("audio");
-        audio.src = song.src;
-        audio.controls = false;
-        audio.preload = "metadata";
-        mediaContainer.appendChild(img);
-        mediaContainer.appendChild(audio);
-        currentMedia = audio;
+        mediaContainer.appendChild(img)
     }
-    currentMedia.addEventListener("loadedmetadata", () => {
+    const audio = document.createElement("audio");
+    audio.src = song.src;
+    audio.preload = "metadata";
+    audio.controls = false;
+    mediaContainer.appendChild(audio);
+    currentMedia = audio;
+    progress.value = 0;
+    audio.addEventListener("loadedmetadata", () => {
         progress.value = 0;
     });
-    currentMedia.addEventListener("timeupdate", () => {
-        if (!currentMedia.duration) return;
-        progress.value = (currentMedia.currentTime / currentMedia.duration) * 100;
+    audio.addEventListener("timeupdate", () => {
+        if (!audio.duration) return;
+        progress.value = (audio.currentTime / audio.duration) * 100;
+    });
+    audio.play().then(() => {
+        playPauseBtn.textContent = "⏸";
+    }).catch(() => {
+        playPauseBtn.textContent = "▶";
     });
 }
 
@@ -530,9 +526,8 @@ const forwardBtn = document.getElementById("forward");
 playPauseBtn.addEventListener("click", () => {
     if (!currentMedia) return;
     if (currentMedia.paused) {
-        currentMedia.play().catch(err => {
-            console.log("playback blocked: ", err);
-        });
+        currentMedia.play()
+        
         playPauseBtn.textContent = "⏸";
     } else {
         currentMedia.pause();
@@ -561,11 +556,30 @@ document.getElementById("next").addEventListener("click", () => {
     renderDemo(currentQueue[currentSongIndex]);
 });
 
+function updateProgressUI() {
+    if (!currentMedia || !currentMedia.duration) return;
+    progress.value = (currentMedia.currentTime / currentMedia.duration) * 100;
+}
+
+document.getElementById("rewind").addEventListener("click", () => {
+    if (!currentMedia) return;
+    currentMedia.currentTIme = Math.max(0, currentMedia.currentTIme - 15);
+    updateProgressUI();
+});
+
+document.getElementById("forward").addEventListener("click", () => {
+    if (!currentMedia || !currentMedia.duration) return;
+    currentMedia.currentTime = Math.min(currentMedia.duration, currentMedia.currentTime + 15);
+    updateProgressUI();
+});
+
 //art app
 const artworks = [
-    "assets/random/clover_icon.png",
-    "image (1).png",
-    "assets/random/f1car_icon.png"
+    "assets/art/69248656661__E8BA3948-A0BC-4577-93F6-D728C4834239.jpeg",
+    "assets/art/69309196614__F1E72D9C-8199-4765-A46A-720FA0A2B0FA.jpeg",
+    "assets/art/IMG_0859.jpeg",
+    "assets/art/IMG_9275.jpeg",
+    "image (1).png"
 ];
 let currentArtIndex = 0;
 const artProgress = {}; // store img data
