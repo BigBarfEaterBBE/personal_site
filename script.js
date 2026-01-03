@@ -124,48 +124,70 @@ function closeArt(e) {
 const vscodeFileContent = {
     "Anki Enforcer": {
         demo: `
-            <audio controls width="90%">
-                <source src="placeholder" type="audio/mp3">
-            </audio>
+            <div class="vscode-video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/5T0wH930keY?rel=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+            </div>
         `,
-        description: "67",
-        learned: "..."
+        description: "I made a Google chrome extension to shutdown the user's browser every few minutes and force them to study their Anki flashcards. It works by using Anki Connect in order to connect with the user's Anki deck information.",
+        learned: "Through this project, I learned a lot about creating a chrome extension and how they work, such as using a service worker. I also learned how to use an API like Anki Connect and this was my first experience using HTML to create a website, using cascading style sheets to design a webpage, and using javascript."
     },
     "Posture Detector": {
         demo: `
-            <audio controls width="90%">
-                <source src="placeholder" type="audio/mp3">
-            </audio>
+            <div class="vscode-video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/Ru3O4oCLbvk?rel=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+            </div>
         `,
-        description: "89",
-        learned: "..."
+        description: "This was the first project I ever created by myself. It takes input from a camera and detects whether the user's posture is good or bad. I used CV2 to access the camera and take photos, MediaPipe to extract the joints from the photos, and RandomForest classifier to serve as the classifier.",
+        learned: "I had previous experience coding in Python, but this project taught me how to use Python libraries such as MediaPipe and CV2, along with introducing me to various machine learning models such as RandomForest classifier."
     },
     "Ticketmaster Trainer": {
         demo: `
-            <audio controls width="90%">
-                <source src="placeholder" type="audio/mp3">
-            </audio>
+            <div class="vscode-video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/UMD-AODqu20?rel=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+            </div>
         `,
-        description: "10",
-        learned: "..."
+        description: "This is another game I made in Godot. The point of the game is a meme of how hard it is to get good seats on Ticketmaster, so the user needs to select the highlighted seats as quickly as possible. I made this in Godot game engine",
+        learned: "Creating this taught me a lot about scene management (managing different game screens), such as levels, intro screens, and popups in Godot "
     },
     "Zeroni Dressup Game": {
         demo: `
-            <audio controls width="90%">
-                <source src="placeholder" type="audio/mp3">
-            </audio>
+            <div class="vscode-video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/BIHZ9pxZTZo?rel=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+            </div>
         `,
-        description: "11",
-        learned: "..."
+        description: "I created a dressup game for Zeronis, animal characters of my favorite band. The program I used was a game engine called Godot.",
+        learned: "This was my first time ever using Godot or creating a video game so I learned a lot about how to code in GDScript, how to create assets, and manage user input."
     },
     "Portfolio Website": {
         demo: `
-            <audio controls width="90%">
-                <source src="placeholder" type="audio/mp3">
-            </audio>
+            <p> you're on the demo right now! </p>
         `,
-        description: "...",
-        learned: "..."
+        description: "This is my most recent project, and the one you're looking at right now! I designed and coded a website to showcase more about myself. I didn't want it to seem like plain so I designed it with a computer-like interface.",
+        learned: "I had some previous experience working with webpages in the Anki Enforcer project, but desiging my own webpage forced me to learn a lot more about style sheets and handling user input. Overall, I think this was the most challenging thing I've ever made because it taught me a lot about handling user events, playing media, and styling my webpage."
     }
 };
 
@@ -305,27 +327,27 @@ previewClose.addEventListener('click', () => {
 
 //music app stuff
 const musicData = {
-    "2023-2024": [
+    "2025-2026": [
         {
-            title: "Ember Skies",
-            artist: "Kevin Day",
+            title: "Jupiter",
+            artist: "Gustav Holst",
             type: "audio",
-            cover: "assets/music/songs/song_covers/ember_skies.png",
-            src: "assets/music/songs/2023-2024/Ember Skies_by_Kevin_Day.mp3"
+            cover: "assets/music/songs/song_covers/jupiter.png",
+            src: "assets/music/songs/2025-2026/Jupiter(1).mp3"
         },
         {
-            title: "Flying High",
-            artist: "William Owens",
+            title: "Mars",
+            artist: "Gustav Holst",
             type: "audio",
-            cover: "assets/music/songs/song_covers/flying_high.png",
-            src: "assets/music/songs/2023-2024/Flying Highk_by_William_Owens.mp3"
+            cover: "assets/music/songs/song_covers/mars.png",
+            src: "assets/music/songs/2025-2026/Mars(1).mp3"
         },
         {
-            title: "Joshua",
-            artist: "Andrew Balent",
+            title: "Sleigh Ride",
+            artist: "Leroy Anderson",
             type: "audio",
-            cover: "assets/music/songs/song_covers/joshua.png",
-            src: "assets/music/songs/2023-2024/Joshua_arr_Andrew_Balent.mp3"
+            cover: "assets/music/songs/song_covers/sleigh_ride.png",
+            src: "assets/music/songs/2025-2026/sleight_ride.mp3"
         }
     ],
     "2024-2025": [
@@ -372,27 +394,27 @@ const musicData = {
             src: "assets/music/songs/2024-2025/(Audio) Blue_Ridge_Reel_by_Brian_Balmages-1.mp3"
         }
     ],
-    "2025-2026": [
+    "2023-2024": [
         {
-            title: "Jupiter",
-            artist: "Gustav Holst",
+            title: "Ember Skies",
+            artist: "Kevin Day",
             type: "audio",
-            cover: "assets/music/songs/song_covers/jupiter.png",
-            src: "assets/music/songs/2025-2026/Jupiter.mp3"
+            cover: "assets/music/songs/song_covers/ember_skies.png",
+            src: "assets/music/songs/2023-2024/Ember Skies_by_Kevin_Day.mp3"
         },
         {
-            title: "Mars",
-            artist: "Gustav Holst",
+            title: "Flying High",
+            artist: "William Owens",
             type: "audio",
-            cover: "assets/music/songs/song_covers/mars.png",
-            src: "assets/music/songs/2025-2026/Mars.mp3"
+            cover: "assets/music/songs/song_covers/flying_high.png",
+            src: "assets/music/songs/2023-2024/Flying Highk_by_William_Owens.mp3"
         },
         {
-            title: "Sleigh Ride",
-            artist: "Leroy Anderson",
+            title: "Joshua",
+            artist: "Andrew Balent",
             type: "audio",
-            cover: "assets/music/songs/song_covers/sleigh_ride.png",
-            src: "assets/music/songs/2025-2026/Sleigh Ride.mp3"
+            cover: "assets/music/songs/song_covers/joshua.png",
+            src: "assets/music/songs/2023-2024/Joshua_arr_Andrew_Balent.mp3"
         }
     ],
     "Jazz": [
@@ -441,7 +463,6 @@ const musicData = {
 }
 const musicArtist = document.getElementById("musicArtist");
 
-let cuurrentMedia = null;
 let currentQueue = [];
 let currentSongIndex = 0;
 document.querySelectorAll(".playlist").forEach(p => {
@@ -561,17 +582,6 @@ function updateProgressUI() {
     progress.value = (currentMedia.currentTime / currentMedia.duration) * 100;
 }
 
-document.getElementById("rewind").addEventListener("click", () => {
-    if (!currentMedia) return;
-    currentMedia.currentTIme = Math.max(0, currentMedia.currentTIme - 15);
-    updateProgressUI();
-});
-
-document.getElementById("forward").addEventListener("click", () => {
-    if (!currentMedia || !currentMedia.duration) return;
-    currentMedia.currentTime = Math.min(currentMedia.duration, currentMedia.currentTime + 15);
-    updateProgressUI();
-});
 
 //art app
 const artworks = [
