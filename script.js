@@ -136,7 +136,9 @@ const vscodeFileContent = {
             </div>
         `,
         description: "I made a Google chrome extension to shutdown the user's browser every few minutes and force them to study their Anki flashcards. It works by using Anki Connect in order to connect with the user's Anki deck information.",
-        learned: "Through this project, I learned a lot about creating a chrome extension and how they work, such as using a service worker. I also learned how to use an API like Anki Connect and this was my first experience using HTML to create a website, using cascading style sheets to design a webpage, and using javascript."
+        learned: "Through this project, I learned a lot about creating a chrome extension and how they work, such as using a service worker. I also learned how to use an API like Anki Connect and this was my first experience using HTML to create a website, using cascading style sheets to design a webpage, and using javascript.",
+        githubUrl: "https://github.com/BigBarfEaterBBE/webstudy",
+        liveUrl: null
     },
     "Posture Detector": {
         demo: `
@@ -151,7 +153,9 @@ const vscodeFileContent = {
             </div>
         `,
         description: "This was the first project I ever created by myself. It takes input from a camera and detects whether the user's posture is good or bad. I used CV2 to access the camera and take photos, MediaPipe to extract the joints from the photos, and RandomForest classifier to serve as the classifier.",
-        learned: "I had previous experience coding in Python, but this project taught me how to use Python libraries such as MediaPipe and CV2, along with introducing me to various machine learning models such as RandomForest classifier."
+        learned: "I had previous experience coding in Python, but this project taught me how to use Python libraries such as MediaPipe and CV2, along with introducing me to various machine learning models such as RandomForest classifier.",
+        githubUrl: "https://github.com/BigBarfEaterBBE/project-py",
+        liveUrl: null
     },
     "Ticketmaster Trainer": {
         demo: `
@@ -166,7 +170,9 @@ const vscodeFileContent = {
             </div>
         `,
         description: "This is another game I made in Godot. The point of the game is a meme of how hard it is to get good seats on Ticketmaster, so the user needs to select the highlighted seats as quickly as possible. I made this in Godot game engine",
-        learned: "Creating this taught me a lot about scene management (managing different game screens), such as levels, intro screens, and popups in Godot "
+        learned: "Creating this taught me a lot about scene management (managing different game screens), such as levels, intro screens, and popups in Godot",
+        githubUrl: "https://github.com/BigBarfEaterBBE/fight-for-2031-bts-concert-tickets",
+        liveUrl: "https://bigbarfeaterbbe.itch.io/ticketmaster-trainer"
     },
     "Zeroni Dressup Game": {
         demo: `
@@ -181,14 +187,18 @@ const vscodeFileContent = {
             </div>
         `,
         description: "I created a dressup game for Zeronis, animal characters of my favorite band. The program I used was a game engine called Godot.",
-        learned: "This was my first time ever using Godot or creating a video game so I learned a lot about how to code in GDScript, how to create assets, and manage user input."
+        learned: "This was my first time ever using Godot or creating a video game so I learned a lot about how to code in GDScript, how to create assets, and manage user input.",
+        githubUrl: "https://github.com/BigBarfEaterBBE/zeroni_dressup_game",
+        liveUrl: "https://bigbarfeaterbbe.itch.io/zeroni-dressup-game"
     },
     "Portfolio Website": {
         demo: `
             <p> you're on the demo right now! </p>
         `,
         description: "This is my most recent project, and the one you're looking at right now! I designed and coded a website to showcase more about myself. I didn't want it to seem like plain so I designed it with a computer-like interface.",
-        learned: "I had some previous experience working with webpages in the Anki Enforcer project, but desiging my own webpage forced me to learn a lot more about style sheets and handling user input. Overall, I think this was the most challenging thing I've ever made because it taught me a lot about handling user events, playing media, and styling my webpage."
+        learned: "I had some previous experience working with webpages in the Anki Enforcer project, but desiging my own webpage forced me to learn a lot more about style sheets and handling user input. Overall, I think this was the most challenging thing I've ever made because it taught me a lot about handling user events, playing media, and styling my webpage.",
+        githubUrl: "https://github.com/BigBarfEaterBBE/personal_site",
+        liveUrl: null
     }
 };
 
@@ -196,6 +206,30 @@ const vscodeFileContent = {
 function renderVSCodeFile(fileName) {
     const data = vscodeFileContent[fileName];
     if (!data) return;
+
+    let linksHTML = '<div class="vscode-links">';
+
+    if (data.githubUrl) {
+        linksHTML += `<a href="${data.githubUrl}" target="_blank" class="vscode-link github-link">
+            <svg width = "16" height="16" viewBox="0 0 16 16" fill = "currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            View on Github
+        </a>`;
+    }
+
+    if (data.liveUrl) {
+        linksHTML += `<a href="${data.liveUrl}" target="_blank" class="vscode-link live-link">
+            <svg width = "16" height="16" viewBox="0 0 16 16" fill = "currentColor">
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/>
+                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+            </svg>
+            Live Demo
+        </a>`;
+    }
+
+    linksHTML += '</div>';
+
     editor.innerHTML = `
     <div class="vscode-section">
         <h3>Demo</h3>
@@ -209,6 +243,7 @@ function renderVSCodeFile(fileName) {
         <h3>What I Learned</h3>
         <p>${data.learned}</p>
     </div>
+    ${linksHTML}
     `.trim();
 }
 const tabsContainer = document.querySelector('.vscode-tabs');
@@ -717,9 +752,10 @@ canvas.addEventListener ("mouseleave", () => {
 
 // CLIPPY STUFF
 const clippyMessages = [
-    "Hi! I'm Clippy",
+    "Hi! I'm Clippy!",
+    "I'll tell you about the apps on this desktop.",
     "The music app lets you explore clarinet recordings.",
-    "The art app lets shows youmy artwork by drawing over the canvas.",
+    "The art app lets shows you my artwork by drawing over the canvas.",
     "The photo app shows you some of my hobbies and more about me.",
     "The fitness app tells you more about my favorite sports.",
     "The email app gives you my contact information.",
@@ -747,6 +783,10 @@ function showClippy(fromCenter = false, startTalking = false) {
 
     clippy.classList.remove("corner", "center");
     clippy.classList.add(fromCenter ? "center": "corner");
+
+    setTimeout(() => {
+        clippy.style.opacity = "1";
+    }, 500);
 }
 
 document.getElementById("clippy-next").addEventListener("click", (e) => {
