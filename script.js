@@ -3,6 +3,7 @@ function startPortfolio() {
                 const bg = document.querySelector('.bg-image');
                 bg.style.backgroundImage = "url('assets/desktop/background.png')";
                 bg.style.opacity = "1";
+                showClippy(true, false);
                 // fade out popup
                 popup.style.opacity = "0";
                 popup.style.transform= "scale(0.9)";
@@ -712,4 +713,66 @@ canvas.addEventListener("mouseenter", () => {
 });
 canvas.addEventListener ("mouseleave", () => {
     brushCursor.style.display = "none";
+});
+
+// CLIPPY STUFF
+const clippyMessages = [
+    "Hi! I'm Clippy",
+    "The music app lets you explore clarinet recordings.",
+    "The art app lets shows youmy artwork by drawing over the canvas.",
+    "The photo app shows you some of my hobbies and more about me.",
+    "The fitness app tells you more about my favorite sports.",
+    "The email app gives you my contact information.",
+    "The code app shows you some of my past coding projects.",
+    "Click icons on the desktop to open apps.",
+    "Click me anytime if you forget!"
+];
+
+let clippyIndex = 0;
+
+function showClippy(fromCenter = false, startTalking = false) {
+    const clippy = document.getElementById("clippy");
+    const bubble = document.getElementById("clippy-bubble");
+    const text = document.getElementById("clippy-text");
+
+    clippy.style.display = "flex";
+
+    if (startTalking) {
+        clippyIndex = 0;
+        text.textContent = clippyMessages[0];
+        bubble.style.display = "block";
+    } else {
+        bubble.style.display = "none";
+    }
+
+    clippy.classList.remove("corner", "center");
+    clippy.classList.add(fromCenter ? "center": "corner");
+}
+
+document.getElementById("clippy-next").addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    clippyIndex++;
+    if (clippyIndex >= clippyMessages.length) {
+        document.getElementById("clippy-bubble").style.display = "none";
+        moveClippyToCorner();
+        return;
+    }
+
+    document.getElementById("clippy-text").textContent = clippyMessages[clippyIndex];
+});
+
+function moveClippyToCorner() {
+    const clippy = document.getElementById("clippy");
+    clippy.classList.remove("center");
+    clippy.classList.add("corner");
+}
+
+document.getElementById("clippy").addEventListener("click", (e) => {
+    const bubble = document.getElementById("clippy-bubble");
+    const text = document.getElementById("clippy-text");
+
+    bubble.style.display = "block";
+    clippyIndex = 0;
+    text.textContent = clippyMessages[0];
 });
